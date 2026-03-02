@@ -1,0 +1,2 @@
+# Placeholder profielfoto
+Dit is een tijdelijke afbeelding voor instructeurs zonder foto. Vervang deze door echte foto's in de img/ map.

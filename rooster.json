@@ -1,0 +1,222 @@
+[
+  {
+    "dag": "dinsdag",
+    "lessen": [
+      {
+        "titel": "Puppytraining",
+        "start": "19:00",
+        "eind": "20:00",
+        "instructeurs": [
+          { "naam": "René ter Maat", "foto": "rene.jpg" },
+          { "naam": "David Havik", "foto": "david.jpg" }
+        ]
+      },
+     { "titel": "Gehoorzaamheid instroom", 
+        "start": "19:00",  
+        "eind": "20:00", 
+        "instructeurs": [
+            { "naam": "David Havik", "foto": "david.jpg" }
+        ] 
+      },
+     { "titel": "Gehoorzaamheid starter", 
+        "start": "20:00",  
+        "eind": "21:00", 
+        "instructeurs": [
+            { "naam": "René ter Maat", "foto": "rene.jpg" }
+        ] 
+     }, 
+      { "titel": "Gehoorzaamheid Basis",
+        "start": "20:00",
+        "eind": "21:00",
+        "instructeurs": [
+          { "naam": "David Havik", "foto": "david.jpg" }
+        ]
+      },
+      {
+        "titel": "Gehoorzaamheid expert/specials",
+        "start": "20:00",
+        "eind": "21:00",
+        "instructeurs": [
+          { "naam": "David Havik", "foto": "david.jpg" }
+        ]
+      },
+      { "titel": "Agility specials",
+        "start": "18:45",
+        "eind": "19:30",
+        "instructeurs": [
+          { "naam": "Annelies Varkevisser", "foto": "annelies.jpg" }
+        ]
+      },
+      { "titel": "Agility basis",
+        "start": "19:15",
+        "eind": "20:15",
+        "instructeurs": [
+          { "naam": "Marina Tunc", "foto": "marina.jpg" }
+        ]
+      },
+      { "titel": "Agility expert",
+        "start": "20:15",
+        "eind": "21:15",
+        "instructeurs": [
+          { "naam": "Annelies Varkevisser", "foto": "annelies.jpg" }
+        ]
+      }
+    ]
+  },
+  {
+    "dag": "woensdag",
+    "lessen": [
+      {
+        "titel": "Mondioring gorep 1",
+        "start": "19:00",
+        "eind": "19:50",
+        "instructeurs": [
+          { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" },
+            { "naam": "Dylan", "foto": "dylan.jpg" }
+        ]
+      },
+        {
+            "titel": "Apel groep 1 & 2",
+            "start": "19:50",
+            "eind": "20:10",
+            "instructeurs": [
+            { "naam": "René ter Maat", "foto": "rene.jpg" },
+                { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+            ]
+        },
+        {
+            "titel": "Mondioring groep 2",
+            "start": "20:10",
+            "eind": "21:00",
+            "instructeurs": [
+            { "naam": "René ter Maat", "foto": "rene.jpg" },
+                { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+            ]
+        },
+        {
+            "titel": "Apel MH",
+            "start": "19:00",
+            "eind": "19:30",
+            "instructeurs": [
+            { "naam": "René ter Maat", "foto": "rene.jpg" }
+            ]
+        },
+        {
+            "titel": "Gehoorzaamheid expert/specials",
+            "start": "19:30",
+            "eind": "20:00",
+            "instructeurs": [
+            { "naam": "Annelies Varkevisser", "foto": "annelies.jpg" }
+            ]
+        }
+    ]
+  },
+    {
+    "dag": "zaterdag",
+    "lessen": [
+      {
+        "titel": "Agility specials",
+        "start": "09:00",
+        "eind": "10:00",
+        "instructeurs": [
+          { "naam": "René ter Maat", "foto": "rene.jpg" }
+        ]
+      },
+      {
+        "titel": "Agility basis",
+        "start": "10:00",
+        "eind": "11:00",
+        "instructeurs": [
+          { "naam": "Rudi Vonk", "foto": "rudi.jpg" }
+        ]
+      },
+      {
+        "titel": "Agility expert",
+        "start": "11:00",
+        "eind": "12:00",
+        "instructeurs": [
+          { "naam": "Rudi Vonk", "foto": "rudi.jpg" }
+        ]
+      },
+      {
+        "titel": "Puppytraining",
+        "start": "10:00",
+        "eind": "11:00",
+        "instructeurs": [
+          { "naam": "René ter Maat", "foto": "rene.jpg" },
+          { "naam": "Ellen v Reek", "foto": "ellen.jpg" },
+          { "naam": "Monica Ros", "foto": "monica.jpg" }
+        ]
+      },
+      {
+        "titel": "Gehoorzaamheid Basis",
+        "start": "09:00",
+        "eind": "10:00",
+        "instructeurs": [
+          { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" },
+          { "naam": "Ellen v Reek", "foto": "ellen.jpg" },
+          { "naam": "Monica Ros", "foto": "monica.jpg" }   
+        ]
+      },
+      {
+        "titel": "Gehoorzaamheid instroom",
+        "start": "10:00",
+        "eind": "11:00",
+        "instructeurs": [
+          { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+        ]
+      },
+      {
+        "titel": "Gehoorzaamheid Basis",
+        "start": "11:00",
+        "eind": "12:00",
+        "instructeurs": [
+          { "naam": "René ter Maat", "foto": "rene.jpg" },
+            { "naam": "Monica Ros", "foto": "monica.jpg" }
+
+        ]
+      },
+      {
+        "titel": "Mondioring groep 1",
+        "start": "13:00",
+        "eind": "14:00",
+        "instructeurs": [
+          { "naam": "David Havik", "foto": "david.jpg" },
+            { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+
+        ],
+        "pakwerker": { "naam": "Dylan", "foto": "dylan.jpg" }
+      },
+      {
+        "titel": "Apel groep 1 (& 2)",
+        "start": "14:00",
+        "eind": "14:20",
+        "instructeurs": [
+          { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" },
+            { "naam": "René ter Maat", "foto": "rene.jpg" }
+
+        ]
+      },
+      {
+        "titel": "Apel groep 1 (& 2)",
+        "start": "14:40",
+        "eind": "15:00",
+        "instructeurs": [
+          { "naam": "David Havik", "foto": "david.jpg" },
+            { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+
+        ]
+     },
+      {
+        "titel": "Mondioring groep 2",
+        "start": "15:00",
+        "eind": "16:00",
+        "instructeurs": [
+          { "naam": "David Havik", "foto": "david.jpg" }
+
+        ],
+        "pakwerker": { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hondenschool Lesrooster</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <div class="banner">
+            <span id="banner-datetime" class="banner-datetime"></span>
+            <span class="banner-logo"><img src="img/logo-ghsv.jpg" alt="GHSV Logo" /></span>
+            <span id="banner-message"></span>
+        </div>
+        <div class="qr-fixed">
+            <img id="qr-code" src="" alt="QR-code inschrijven" />
+            <div class="qr-label">Inschrijven</div>
+        </div>
+            <main class="lesson-main">
+                <section id="current-lesson" class="lesson-section">
+                    <h2>Deze lessen zijn nu bezig</h2>
+                    <div id="current-lesson-content"></div>
+                </section>
+                <section id="upcoming-lessons" class="lesson-section">
+                    <h2>Komende Lessen</h2>
+                    <div id="upcoming-lessons-content"></div>
+                </section>
+            </main>
+        <script src="script.js"></script>
+    </body>
+    </html>

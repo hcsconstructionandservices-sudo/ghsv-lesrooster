@@ -1,0 +1,164 @@
+.lesson-main {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 24px;
+}
+.lesson-section {
+    flex: 1 1 0;
+    min-width: 320px;
+    max-width: 480px;
+}
+.qr-label {
+    text-align: center;
+    font-size: 1em;
+    color: #e67e22;
+    margin-top: 4px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+.banner {
+    width: 100%;
+    background: #23457a;
+    color: #fff;
+    font-size: 1em;
+    padding: 6px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 4px solid #16305a;
+    min-height: 40px;
+    max-height: 48px;
+}
+.banner {
+    width: 100%;
+    background: #23457a;
+    color: #fff;
+    font-size: 1em;
+    padding: 6px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid #16305a;
+    min-height: 56px;
+    max-height: 72px;
+}
+.banner-logo {
+    flex: 0 0 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+}
+.banner-logo img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    background: none;
+}
+.banner-datetime {
+    flex: 0 0 260px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+}
+#banner-message {
+    flex: 1 1 auto;
+    text-align: left;
+    padding-left: 24px;
+}
+.qr-fixed {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 100;
+    background: #fff;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    border: 2px solid #e67e22;
+}
+.qr-fixed img {
+    width: 80px;
+    height: 80px;
+    display: block;
+}
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2c3e50;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+.clock {
+    font-size: 2em;
+    font-weight: bold;
+}
+.lesson-section {
+    background: #fff;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+#current-lesson-content, #upcoming-lessons-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#upcoming-lessons-content {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.lesson {
+    min-width: 220px;
+    max-width: 260px;
+    flex: 1 1 220px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    margin-bottom: 0;
+}
+.instructor {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.instructor img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+    background: #eee;
+}
+.lesson-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.lesson-time {
+    color: #888;
+    font-size: 1em;
+}
