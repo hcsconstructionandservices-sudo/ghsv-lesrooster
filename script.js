@@ -30,17 +30,21 @@ function getBannerDateTime() {
     const timeStr = now.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     return `${dateStr} | ${timeStr}`;
 }
-function updateBanner() {
+function updateBannerMessage() {
     if (bannerElem) {
         bannerElem.textContent = bannerMessages[bannerIndex];
         bannerIndex = (bannerIndex + 1) % bannerMessages.length;
     }
+}
+function updateBannerClock() {
     if (bannerDatetimeElem) {
         bannerDatetimeElem.textContent = getBannerDateTime();
     }
 }
-setInterval(updateBanner, 5000);
-updateBanner();
+setInterval(updateBannerClock, 1000);
+setInterval(updateBannerMessage, 5000);
+updateBannerClock();
+updateBannerMessage();
 
 let roosterData = [];
 let refreshInterval = 60 * 1000; // 1 minuut
