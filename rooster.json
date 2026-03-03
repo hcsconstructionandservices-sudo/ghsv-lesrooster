@@ -3,6 +3,12 @@
     "dag": "dinsdag",
     "lessen": [
       {
+        "titel": "Agility opbouw parcour",
+        "start": "18:15",
+        "eind": "18:45",
+        "instructeurs": []
+      },
+      {
         "titel": "Puppytraining",
         "start": "19:00",
         "eind": "20:00",
