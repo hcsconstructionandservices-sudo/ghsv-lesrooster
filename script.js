@@ -95,8 +95,13 @@ function renderLessons() {
         currentLessonElem.textContent = 'Er is op dit moment geen les.';
     }
 
-    // komende lessen
-    upcomingLessonsElem.innerHTML = upcoming.slice(0, 3).map(renderLesson).join('');
+    // komende lessen gesorteerd op tijd
+    upcoming.sort((a, b) => {
+        const aStart = parseInt(a.start.split(':')[0]) * 60 + parseInt(a.start.split(':')[1]);
+        const bStart = parseInt(b.start.split(':')[0]) * 60 + parseInt(b.start.split(':')[1]);
+        return aStart - bStart;
+    });
+    upcomingLessonsElem.innerHTML = upcoming.map(renderLesson).join('');
 }
 
 function renderLesson(les) {
