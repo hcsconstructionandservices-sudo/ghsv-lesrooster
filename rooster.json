@@ -50,7 +50,7 @@
         "start": "18:45",
         "eind": "19:30",
         "instructeurs": [
-          { "naam": "Annelies Varkevisser", "foto": "annelies.jpg" }
+            { "naam": "Annelies Varkenvisser", "foto": "annelies.jpg" }
         ]
       },
       { "titel": "Agility basis",
@@ -64,7 +64,7 @@
         "start": "20:15",
         "eind": "21:15",
         "instructeurs": [
-          { "naam": "Annelies Varkevisser", "foto": "annelies.jpg" }
+          { "naam": "Annelies Varkenvisser", "foto": "annelies.jpg" }
         ]
       }
     ]
@@ -112,7 +112,7 @@
             "start": "19:30",
             "eind": "20:00",
             "instructeurs": [
-            { "naam": "Annelies Varkevisser", "foto": "annelies.jpg" }
+            { "naam": "Annelies Varkenvisser", "foto": "annelies.jpg" }
             ]
         }
     ]
