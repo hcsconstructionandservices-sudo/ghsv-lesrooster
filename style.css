@@ -96,6 +96,7 @@ body {
     flex: 1 1 auto;
     text-align: left;
     padding-left: 24px;
+    font-size: clamp(1.2em, 3vw, 2.5em);
 }
 .qr-fixed {
     position: fixed;
