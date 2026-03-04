@@ -2,15 +2,20 @@
 const adOverlay = document.getElementById('ad-overlay');
 const adImage = document.getElementById('ad-image');
 const adVideo = document.getElementById('ad-video');
-const adMedia = [
-    { type: 'image', src: 'img/ad1.jpg' },
-    { type: 'image', src: 'img/ad2.jpg' },
-    { type: 'video', src: 'img/ad1.mp4' },
-    { type: 'image', src: 'img/ad3.jpg' }
-];
+let adMedia = [];
 let adIndex = 0;
+
+function fetchAdMedia() {
+    fetch('admedia.json?_=' + Date.now())
+        .then(res => res.json())
+        .then(data => {
+            adMedia = data;
+            adIndex = 0;
+        });
+}
+
 function showAd() {
-    if (!adOverlay) return;
+    if (!adOverlay || adMedia.length === 0) return;
     const media = adMedia[adIndex];
     if (media.type === 'image' && adImage) {
         adImage.src = media.src;
@@ -33,6 +38,8 @@ function hideAd() {
         adVideo.currentTime = 0;
     }
 }
+
+fetchAdMedia();
 setInterval(showAd, 30000); // elke 30 seconden
 const bannerDateElem = document.getElementById('banner-date');
 const bannerClockElem = document.getElementById('banner-clock');
