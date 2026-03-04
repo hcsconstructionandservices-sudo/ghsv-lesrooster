@@ -1,3 +1,24 @@
+// Reclame-overlay
+const adOverlay = document.getElementById('ad-overlay');
+const adImage = document.getElementById('ad-image');
+const adImages = [
+    'img/ad1.jpg',
+    'img/ad2.jpg',
+    'img/ad3.jpg'
+];
+let adIndex = 0;
+function showAd() {
+    if (adOverlay && adImage) {
+        adImage.src = adImages[adIndex];
+        adOverlay.style.display = 'flex';
+        adIndex = (adIndex + 1) % adImages.length;
+        setTimeout(hideAd, 10000); // reclame 10 seconden tonen
+    }
+}
+function hideAd() {
+    if (adOverlay) adOverlay.style.display = 'none';
+}
+setInterval(showAd, 30000); // elke 30 seconden
 const bannerDateElem = document.getElementById('banner-date');
 const bannerClockElem = document.getElementById('banner-clock');
 const currentLessonElem = document.getElementById('current-lesson-content');
