@@ -56,8 +56,8 @@ if (qrCodeElem) {
 
 // Banner-meldingen rouleren, datum en tijd links
 const bannerMessages = [
-    'Welkom bij de GHSV!',
-    'Schrijf je nu op onze website! Scan de QR-code of ga naar onze inschrijfpagina.',
+    'Welkom bij de GHSV Harderwijk!',
+    'Schrijf je in op onze website! Scan de QR-code of ga naar onze inschrijfpagina.',
     'Volg ons op Facebook en Instagram voor nieuws!',
     'Laat een riem op maat maken, vraag ernaar bij de instructeurs!',
     'Vergeet niet de examendag in de agenda te zetten!',
@@ -65,6 +65,7 @@ const bannerMessages = [
     '2 mei hebben we de RtM-dag, een dag vol leuke activiteiten en wedstrijden!',
     'Uw reclame ook langs het veld? Neem contact op voor sponsormogelijkheden!',
     '30 mei de Bontehondendag, een gezellige dag vol demonstraties, spelletjes en kraampjes!',
+    'Op 11 april hebben we de jaarlijkse klusdag, kom jij ook helpen?'
 ];
 let bannerIndex = 0;
 const bannerElem = document.getElementById('banner-message');
