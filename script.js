@@ -4,6 +4,7 @@ const adImage = document.getElementById('ad-image');
 const adVideo = document.getElementById('ad-video');
 let adMedia = [];
 let adIndex = 0;
+let adTimeout = null;
 
 function fetchAdMedia() {
     fetch('admedia.json?_=' + Date.now())
@@ -12,6 +13,10 @@ function fetchAdMedia() {
             adMedia = data;
             adIndex = 0;
         });
+}
+
+function scheduleNextAd() {
+    adTimeout = setTimeout(showAd, 30000);
 }
 
 function showAd() {
@@ -29,13 +34,16 @@ function showAd() {
     }
     adOverlay.style.display = 'flex';
     if (media.type === 'video' && adVideo) {
-        // Verberg overlay pas als video klaar is
         adVideo.onended = function() {
             hideAd();
             adVideo.onended = null;
+            scheduleNextAd();
         };
     } else {
-        setTimeout(hideAd, 10000); // reclame 10 seconden tonen
+        setTimeout(function() {
+            hideAd();
+            scheduleNextAd();
+        }, 10000); // reclame 10 seconden tonen
     }
     adIndex = (adIndex + 1) % adMedia.length;
 }
@@ -45,10 +53,15 @@ function hideAd() {
         adVideo.pause();
         adVideo.currentTime = 0;
     }
+    if (adTimeout) {
+        clearTimeout(adTimeout);
+        adTimeout = null;
+    }
 }
 
 fetchAdMedia();
-setInterval(showAd, 30000); // elke 30 seconden
+// Start eerste reclame na 30 seconden
+scheduleNextAd();
 const bannerDateElem = document.getElementById('banner-date');
 const bannerClockElem = document.getElementById('banner-clock');
 const currentLessonElem = document.getElementById('current-lesson-content');
