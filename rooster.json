@@ -1,6 +1,6 @@
 [
   {
-    "dag": "donderdag",
+    "dag": "dinsdag",
     "lessen": [
       {
         "titel": "Agility opbouw parcour",
@@ -57,7 +57,7 @@
         "start": "19:15",
         "eind": "20:15",
         "instructeurs": [
-          { "naam": "Marina Tunc", "foto": "marina.jpg" }
+          { "naam": "Annelies Varkenvisser", "foto": "annelies.jpg" }
         ]
       },
       { "titel": "Agility expert",
