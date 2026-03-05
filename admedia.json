@@ -4,9 +4,12 @@
   { "type": "image", "src": "img/ad2.jpg" },
   { "type": "image", "src": "img/ad3.jpg" },
   { "type": "image", "src": "img/ad4.jpg" },
+  { "type": "video", "src": "img/youcut1.mp4" }, 
   { "type": "image", "src": "img/ad5.png" },
   { "type": "image", "src": "img/ad6.png" },
+   { "type": "video", "src": "img/youcut2.mp4" },
   { "type": "image", "src": "img/ad7.png" },
+   { "type": "video", "src": "img/youcut3.mp4" },
   { "type": "image", "src": "img/ad1.jpg" },
   { "type": "video", "src": "img/mondioring.mp4" }
 ]
