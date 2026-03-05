@@ -30,7 +30,7 @@
     gap: 32px;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 24px;
+    margin-top: 16px;
 }
 .lesson-section {
     flex: 1 1 0;
@@ -142,7 +142,7 @@ header {
 }
 .lesson-section {
     background: #fff;
-    margin-top: 20px;
+    margin-top: 12px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
