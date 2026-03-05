@@ -15,53 +15,58 @@ function fetchAdMedia() {
         });
 }
 
-function scheduleNextAd() {
-    adTimeout = setTimeout(showAd, 30000);
-}
-
 function showAd() {
     if (!adOverlay || adMedia.length === 0) return;
     const media = adMedia[adIndex];
-    if (media.type === 'image' && adImage) {
-        adImage.src = media.src;
-        adImage.style.display = 'block';
-        if (adVideo) adVideo.style.display = 'none';
-    } else if (media.type === 'video' && adVideo) {
-        adVideo.src = media.src;
-        adVideo.style.display = 'block';
-        adVideo.play();
-        if (adImage) adImage.style.display = 'none';
-    }
-    adOverlay.style.display = 'flex';
-    if (media.type === 'video' && adVideo) {
-        adVideo.onended = function() {
-            hideAd();
-            adVideo.onended = null;
-            scheduleNextAd();
-        };
-    } else {
-        setTimeout(function() {
-            hideAd();
-            scheduleNextAd();
-        }, 10000); // reclame 10 seconden tonen
-    }
-    adIndex = (adIndex + 1) % adMedia.length;
-}
-function hideAd() {
-    if (adOverlay) adOverlay.style.display = 'none';
-    if (adVideo) {
-        adVideo.pause();
-        adVideo.currentTime = 0;
-    }
     if (adTimeout) {
         clearTimeout(adTimeout);
         adTimeout = null;
     }
+    if (media.type === 'image' && adImage) {
+        adImage.src = media.src;
+        adImage.style.display = 'block';
+        if (adVideo) adVideo.style.display = 'none';
+        adOverlay.style.display = 'flex';
+        adTimeout = setTimeout(() => {
+            hideAd();
+            adIndex = (adIndex + 1) % adMedia.length;
+        }, 10000); // afbeelding 10 seconden tonen
+    } else if (media.type === 'video' && adVideo) {
+        adVideo.src = media.src;
+        adVideo.style.display = 'block';
+        adVideo.currentTime = 0;
+        adVideo.play();
+        if (adImage) adImage.style.display = 'none';
+        adOverlay.style.display = 'flex';
+        // Wacht tot video klaar is met afspelen
+        const onEnded = () => {
+            hideAd();
+            adIndex = (adIndex + 1) % adMedia.length;
+            adVideo.removeEventListener('ended', onEnded);
+        };
+        adVideo.addEventListener('ended', onEnded);
+    }
+}
+function hideAd() {
+    if (adOverlay) adOverlay.style.display = 'none';
+    if (adTimeout) {
+        clearTimeout(adTimeout);
+        adTimeout = null;
+    }
+    if (adVideo) {
+        adVideo.pause();
+        adVideo.currentTime = 0;
+    }
 }
 
 fetchAdMedia();
-// Start eerste reclame na 30 seconden
-scheduleNextAd();
+// Start automatische rotatie van advertenties
+setInterval(() => {
+    // Alleen nieuwe ad tonen als er geen overlay zichtbaar is
+    if (!adOverlay || adOverlay.style.display === 'none') {
+        showAd();
+    }
+}, 30000); // elke 30 seconden
 const bannerDateElem = document.getElementById('banner-date');
 const bannerClockElem = document.getElementById('banner-clock');
 const currentLessonElem = document.getElementById('current-lesson-content');
