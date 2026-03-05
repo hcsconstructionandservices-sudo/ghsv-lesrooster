@@ -28,8 +28,16 @@ function showAd() {
         if (adImage) adImage.style.display = 'none';
     }
     adOverlay.style.display = 'flex';
+    if (media.type === 'video' && adVideo) {
+        // Verberg overlay pas als video klaar is
+        adVideo.onended = function() {
+            hideAd();
+            adVideo.onended = null;
+        };
+    } else {
+        setTimeout(hideAd, 10000); // reclame 10 seconden tonen
+    }
     adIndex = (adIndex + 1) % adMedia.length;
-    setTimeout(hideAd, 10000); // reclame 10 seconden tonen
 }
 function hideAd() {
     if (adOverlay) adOverlay.style.display = 'none';
