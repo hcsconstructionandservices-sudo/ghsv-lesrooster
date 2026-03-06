@@ -2,9 +2,37 @@
 const adOverlay = document.getElementById('ad-overlay');
 const adImage = document.getElementById('ad-image');
 const adVideo = document.getElementById('ad-video');
+const menuToggleBtn = document.getElementById('menu-toggle');
+const quickMenuElem = document.getElementById('quick-menu');
+const menuRefreshBtn = document.getElementById('menu-refresh');
+const menuShowAdBtn = document.getElementById('menu-show-ad');
+const menuHideAdBtn = document.getElementById('menu-hide-ad');
 let adMedia = [];
 let adIndex = 0;
 let adTimeout = null;
+
+function closeQuickMenu() {
+    if (!quickMenuElem || !menuToggleBtn) return;
+    quickMenuElem.hidden = true;
+    menuToggleBtn.setAttribute('aria-expanded', 'false');
+}
+
+if (menuToggleBtn && quickMenuElem) {
+    menuToggleBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = !quickMenuElem.hidden;
+        quickMenuElem.hidden = isOpen;
+        menuToggleBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    quickMenuElem.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    document.addEventListener('click', () => {
+        closeQuickMenu();
+    });
+}
 
 function fetchAdMedia() {
     fetch('admedia.json?_=' + Date.now())
@@ -134,6 +162,28 @@ function fetchRooster() {
             currentLessonElem.textContent = 'Kan rooster niet laden.';
             upcomingLessonsElem.textContent = '';
         });
+}
+
+if (menuRefreshBtn) {
+    menuRefreshBtn.addEventListener('click', () => {
+        fetchRooster();
+        fetchAdMedia();
+        closeQuickMenu();
+    });
+}
+
+if (menuShowAdBtn) {
+    menuShowAdBtn.addEventListener('click', () => {
+        showAd();
+        closeQuickMenu();
+    });
+}
+
+if (menuHideAdBtn) {
+    menuHideAdBtn.addEventListener('click', () => {
+        hideAd();
+        closeQuickMenu();
+    });
 }
 
 function renderLessons() {

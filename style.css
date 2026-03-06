@@ -117,6 +117,70 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
     border: 2px solid #e67e22;
 }
+.menu-floating {
+    position: fixed;
+    top: 84px;
+    left: 20px;
+    z-index: 200;
+}
+.menu-toggle {
+    border: 0;
+    border-radius: 10px;
+    background: #16305a;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px 16px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+.menu-toggle:hover,
+.menu-toggle:focus {
+    background: #1f4278;
+    outline: none;
+}
+.quick-menu {
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    border: 1px solid #d0d7e2;
+    min-width: 220px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.quick-menu[hidden] {
+    display: none;
+}
+.quick-menu button {
+    border: 1px solid #d7dfe8;
+    background: #f7f9fc;
+    border-radius: 8px;
+    padding: 9px 10px;
+    text-align: left;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+.quick-menu .menu-link {
+    border: 1px solid #d7dfe8;
+    background: #f7f9fc;
+    border-radius: 8px;
+    padding: 9px 10px;
+    text-align: left;
+    font-size: 0.95rem;
+    color: #1a2f52;
+    text-decoration: none;
+    display: block;
+}
+.quick-menu button:hover,
+.quick-menu button:focus,
+.quick-menu .menu-link:hover,
+.quick-menu .menu-link:focus {
+    background: #eaf1ff;
+    outline: none;
+}
 .qr-fixed img {
     width: 80px;
     height: 80px;
@@ -197,4 +261,53 @@ header {
 .lesson-time {
     color: #888;
     font-size: 1em;
+}
+
+.home-main {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.home-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+    padding: 28px;
+}
+
+.home-card h1 {
+    margin-top: 0;
+    color: #16305a;
+}
+
+.home-actions {
+    margin-top: 18px;
+}
+
+.home-link {
+    display: inline-block;
+    background: #16305a;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 16px;
+}
+
+.home-link:hover,
+.home-link:focus {
+    background: #1f4278;
+}
+
+@media (max-width: 900px) {
+    .menu-floating {
+        top: 76px;
+        left: 12px;
+    }
+
+    .menu-toggle {
+        padding: 8px 12px;
+        font-size: 0.92rem;
+    }
 }
