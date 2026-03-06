@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHSV Home</title>
+    <title>Weekoverzicht Lessen</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="banner">
-        <span class="banner-datetime">GHSV Harderwijk</span>
+        <span id="banner-datetime" class="banner-datetime"></span>
         <span class="banner-logo"><img src="img/logo-ghsv.jpg" alt="GHSV Logo" /></span>
-        <span id="banner-message">Welkom op de homepage</span>
+        <span id="banner-message">Weekoverzicht van alle lessen</span>
     </div>
 
     <div class="menu-floating">
@@ -22,16 +22,11 @@
         </div>
     </div>
 
-    <main class="home-main">
-        <section class="home-card">
-            <h1>Welkom bij Hondenschool GHSV</h1>
-            <p>Dit is de nieuwe homepage. Vanaf hier ga je direct naar het actuele lesrooster.</p>
-            <div class="home-actions">
-                <a class="home-link" href="rooster.html">Naar Lesrooster</a>
-            </div>
-        </section>
+    <main class="week-main">
+        <div id="week-grid" class="week-grid"></div>
     </main>
 
     <script src="menu.js"></script>
+    <script src="weekoverzicht.js"></script>
 </body>
 </html>
