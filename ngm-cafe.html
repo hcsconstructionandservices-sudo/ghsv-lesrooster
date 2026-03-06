@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHSV Home</title>
+    <title>NGM-Cafe</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="ngm-fullscreen-page">
     <div class="banner">
         <span class="banner-datetime">GHSV Harderwijk</span>
         <span class="banner-logo"><img src="img/logo-ghsv.jpg" alt="GHSV Logo" /></span>
-        <span id="banner-message">Welkom op de homepage</span>
+        <span id="banner-message">NGM-Cafe</span>
     </div>
 
     <div class="menu-floating">
@@ -24,16 +24,20 @@
         </div>
     </div>
 
-    <main class="home-main">
-        <section class="home-card">
-            <h1>Welkom bij Hondenschool GHSV</h1>
-            <p>Dit is de nieuwe homepage. Vanaf hier ga je direct naar het actuele lesrooster.</p>
-            <div class="home-actions">
-                <a class="home-link" href="rooster.html">Naar Lesrooster</a>
+    <main class="ngm-main">
+        <section class="ngm-card">
+            <h1>NGM-Cafe Reclame</h1>
+            <p>Doorlopende reclame van geselecteerde media uit <code>ngm-admedia.json</code>.</p>
+            <div id="ngm-ad-stage" class="ngm-ad-stage">
+                <img id="ngm-ad-image" alt="Reclame afbeelding" hidden>
+                <video id="ngm-ad-video" muted autoplay playsinline controls hidden></video>
+                <iframe id="ngm-ad-iframe" title="Web video" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" hidden></iframe>
+                <div id="ngm-ad-empty" class="ngm-ad-empty">Reclame wordt geladen...</div>
             </div>
         </section>
     </main>
 
     <script src="menu.js"></script>
+    <script src="ngm-cafe.js"></script>
 </body>
 </html>
