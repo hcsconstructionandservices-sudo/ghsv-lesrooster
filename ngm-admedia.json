@@ -1,8 +1,10 @@
 [
-  { "type": "video", "src": "https://www.ghsv.nl/wp-content/uploads/2024/10/P1122257.mp4" },
-  { "type": "image", "src": "img/ad3.jpg" },
+  { "type": "image", "src": "img/ngmbanner.jpg" },
   { "type": "image", "src": "img/ngm1.jpg" },
+  { "type": "video", "src": "https://www.ghsv.nl/wp-content/uploads/2024/10/P1122257.mp4" },
   { "type": "image", "src": "img/ngm2.jpg" },
+  { "type": "image", "src": "img/ad3.jpg" },
   { "type": "image", "src": "img/ngm3.jpg" },
-  { "type": "image", "src": "img/ad1.jpg" }
+  { "type": "image", "src": "img/ad1.jpg" },
+  { "type": "image", "src": "img/ngm2.jpg" }
 ]
