@@ -12,6 +12,11 @@ const orderedDays = [
     'zondag'
 ];
 
+const extraInstructors = [
+    { naam: 'Marina', foto: 'marina.jpg' },
+    { naam: 'Henk', foto: 'henk.jpg' }
+];
+
 function toMinutes(timeValue) {
     const [hours, minutes] = timeValue.split(':').map(Number);
     return (hours * 60) + minutes;
@@ -44,6 +49,12 @@ function renderInstructorGallery(data) {
                 });
             }
         }
+    }
+
+    for (const instructor of extraInstructors) {
+        const key = String(instructor.naam || '').trim().toLowerCase();
+        if (!key || uniqueInstructors.has(key)) continue;
+        uniqueInstructors.set(key, instructor);
     }
 
     const instructors = Array.from(uniqueInstructors.values()).sort((a, b) => {
