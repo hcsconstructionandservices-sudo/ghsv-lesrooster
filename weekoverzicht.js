@@ -13,8 +13,8 @@ const orderedDays = [
 ];
 
 const extraInstructors = [
-    { naam: 'Marina', foto: 'marina.jpg' },
-    { naam: 'Henk', foto: 'henk.jpg' }
+    { naam: 'Marina Tunc', foto: 'marina.jpg' },
+    { naam: 'Henk Dekker', foto: 'henk.jpg' }
 ];
 
 function toMinutes(timeValue) {
