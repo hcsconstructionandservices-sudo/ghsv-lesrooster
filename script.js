@@ -2,6 +2,7 @@
 const adOverlay = document.getElementById('ad-overlay');
 const adImage = document.getElementById('ad-image');
 const adVideo = document.getElementById('ad-video');
+const adDatetimeElem = document.getElementById('ad-datetime');
 const menuToggleBtn = document.getElementById('menu-toggle');
 const quickMenuElem = document.getElementById('quick-menu');
 const menuRefreshBtn = document.getElementById('menu-refresh');
@@ -139,6 +140,9 @@ function updateBannerMessage() {
 function updateBannerClock() {
     if (bannerDatetimeElem) {
         bannerDatetimeElem.textContent = getBannerDateTime();
+    }
+    if (adDatetimeElem) {
+        adDatetimeElem.textContent = getBannerDateTime();
     }
 }
 setInterval(updateBannerClock, 1000);

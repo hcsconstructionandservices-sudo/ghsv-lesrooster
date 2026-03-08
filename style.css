@@ -24,6 +24,19 @@
     object-fit: contain;
     background: #000;
 }
+.ad-datetime {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    z-index: 10001;
+    background: rgba(0, 0, 0, 0.62);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.4px;
+}
 .lesson-main {
     display: flex;
     flex-direction: row;
@@ -409,6 +422,47 @@ body.ngm-fullscreen-page .menu-floating.ngm-auto-hidden {
     padding: 0 20px;
 }
 
+.week-instructor-panel {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    border: 1px solid #dde4ef;
+    padding: 14px;
+    margin-bottom: 18px;
+}
+
+.week-instructor-panel h2 {
+    margin: 0 0 10px;
+    color: #16305a;
+}
+
+.week-instructors-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.week-instructor-card {
+    width: 120px;
+    text-align: center;
+}
+
+.week-instructor-card img {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #d5dfed;
+    background: #eef3fb;
+}
+
+.week-instructor-name {
+    margin-top: 6px;
+    font-size: 0.88rem;
+    line-height: 1.25;
+    color: #33435b;
+}
+
 .week-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -482,6 +536,15 @@ body.ngm-fullscreen-page .menu-floating.ngm-auto-hidden {
 
     .week-grid {
         grid-template-columns: 1fr;
+    }
+
+    .week-instructor-card {
+        width: 94px;
+    }
+
+    .week-instructor-card img {
+        width: 64px;
+        height: 64px;
     }
 
     .ngm-main {
