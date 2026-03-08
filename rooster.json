@@ -121,6 +121,12 @@
     "dag": "zaterdag",
     "lessen": [
       {
+        "titel": "Agility opbouw parcour",
+        "start": "08:30",
+        "eind": "09:00",
+        "instructeurs": []
+      },
+      {
         "titel": "Agility specials",
         "start": "09:00",
         "eind": "10:00",
