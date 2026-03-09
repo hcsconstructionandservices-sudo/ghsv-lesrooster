@@ -1,0 +1,41 @@
+﻿{
+    "generatedAt":  "2026-03-09T20:54:03",
+    "folders":  [
+                    {
+                        "id":  "Bontehondendag-2025",
+                        "name":  "Bontehondendag 2025",
+                        "images":  [
+                                       {
+                                           "src":  "media_fotos/Bontehondendag-2025/2012-08-26 17.48.53.jpg",
+                                           "name":  "2012-08-26 17.48.53"
+                                       },
+                                       {
+                                           "src":  "media_fotos/Bontehondendag-2025/2012-08-26 17.49.07.jpg",
+                                           "name":  "2012-08-26 17.49.07"
+                                       },
+                                       {
+                                           "src":  "media_fotos/Bontehondendag-2025/20250725_133022.jpg",
+                                           "name":  "20250725_133022"
+                                       }
+                                   ]
+                    },
+                    {
+                        "id":  "RtM-dag-2025",
+                        "name":  "RtM dag 2025",
+                        "images":  [
+                                       {
+                                           "src":  "media_fotos/RtM-dag-2025/2012-07-21 20.44.27.jpg",
+                                           "name":  "2012-07-21 20.44.27"
+                                       },
+                                       {
+                                           "src":  "media_fotos/RtM-dag-2025/2012-07-21 20.44.36.jpg",
+                                           "name":  "2012-07-21 20.44.36"
+                                       },
+                                       {
+                                           "src":  "media_fotos/RtM-dag-2025/2012-07-21 20.44.49.jpg",
+                                           "name":  "2012-07-21 20.44.49"
+                                       }
+                                   ]
+                    }
+                ]
+}

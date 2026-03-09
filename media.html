@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHSV Home</title>
+    <title>Media</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="banner">
         <span class="banner-datetime">GHSV Harderwijk</span>
         <span class="banner-logo"><img src="img/logo-ghsv.jpg" alt="GHSV Logo" /></span>
-        <span id="banner-message">Welkom op de homepage</span>
+        <span id="banner-message">Media</span>
     </div>
 
     <div class="menu-floating">
@@ -22,19 +22,29 @@
             <a class="menu-link" href="lesmateriaal.html">Lesmateriaal</a>
             <a class="menu-link" href="ngm-cafe.html">NGM-Cafe</a>
             <a class="menu-link" href="media.html">Media</a>
+            <a class="menu-link" href="galerij.html">Galerij</a>
         </div>
     </div>
 
     <main class="home-main">
         <section class="home-card">
-            <h1>Welkom bij Hondenschool GHSV</h1>
-            <p>Dit is de nieuwe homepage. Vanaf hier ga je direct naar het actuele lesrooster.</p>
+            <h1>Media</h1>
+            <p>Hier kun je media tonen, zoals afbeeldingen en video's.</p>
+            <p>De pagina is aangemaakt en klaar om verder in te vullen.</p>
             <div class="home-actions">
-                <a class="home-link" href="rooster.html">Naar Lesrooster</a>
+                <button id="media-photos-btn" class="home-button" type="button" aria-expanded="false" aria-controls="media-folder-list">foto's</button>
+            </div>
+            <div id="media-folder-list" class="media-folder-list" hidden>
+                <h2>Kies een map</h2>
+                <div id="media-folder-options" class="media-folder-options">
+                </div>
+                <p id="media-folder-selected" class="media-folder-selected">Klik op een map om de galerij te openen.</p>
             </div>
         </section>
     </main>
 
+    <script src="media-index.js"></script>
     <script src="menu.js"></script>
+    <script src="media.js"></script>
 </body>
 </html>

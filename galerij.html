@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerij</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="banner">
+        <span class="banner-datetime">GHSV Harderwijk</span>
+        <span class="banner-logo"><img src="img/logo-ghsv.jpg" alt="GHSV Logo" /></span>
+        <span id="banner-message">Galerij</span>
+    </div>
+
+    <div class="menu-floating">
+        <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="quick-menu">Menu</button>
+        <div id="quick-menu" class="quick-menu" hidden>
+            <a class="menu-link" href="index.html">Home</a>
+            <a class="menu-link" href="rooster.html">Lesrooster</a>
+            <a class="menu-link" href="weekoverzicht.html">Weekoverzicht</a>
+            <a class="menu-link" href="lesmateriaal.html">Lesmateriaal</a>
+            <a class="menu-link" href="ngm-cafe.html">NGM-Cafe</a>
+            <a class="menu-link" href="media.html">Media</a>
+            <a class="menu-link" href="galerij.html">Galerij</a>
+        </div>
+    </div>
+
+    <main class="home-main">
+        <section class="home-card">
+            <h1>Foto galerij</h1>
+            <p id="gallery-folder-name" class="gallery-folder-name">Map: niet gekozen</p>
+            <p id="gallery-folder-path" class="gallery-folder-path"></p>
+            <div id="gallery-empty" class="gallery-empty">Laden van miniaturen...</div>
+            <div id="gallery-grid" class="gallery-grid" hidden></div>
+            <div class="home-actions">
+                <a class="home-link" href="media.html">Terug naar Media</a>
+            </div>
+        </section>
+    </main>
+
+    <div id="gallery-lightbox" class="gallery-lightbox" hidden>
+        <button id="lightbox-close" class="lightbox-close" type="button" aria-label="Sluiten">Sluiten</button>
+        <img id="lightbox-image" class="lightbox-image" src="" alt="Galerij afbeelding" />
+        <div class="lightbox-caption-wrap">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+            <div class="lightbox-controls">
+                <button id="lightbox-prev" class="home-button" type="button">Vorige</button>
+                <button id="lightbox-next" class="home-button" type="button">Volgende</button>
+                <button id="lightbox-play" class="home-button" type="button">Start diashow</button>
+                <button id="lightbox-stop" class="home-button" type="button" hidden>Stop diashow</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="media-index.js"></script>
+    <script src="menu.js"></script>
+    <script src="galerij.js"></script>
+</body>
+</html>

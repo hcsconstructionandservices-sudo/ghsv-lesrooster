@@ -2,7 +2,7 @@
 
 - [x] Clarify Project Requirements
 - [x] Scaffold the Project
-- [ ] Customize the Project
+- [x] Customize the Project
 - [ ] Install Required Extensions
 - [ ] Compile the Project
 - [ ] Create and Run Task
