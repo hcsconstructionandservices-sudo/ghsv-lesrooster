@@ -259,6 +259,10 @@ header {
     align-items: center;
     margin-bottom: 10px;
 }
+.instructor.pakwerker span {
+    font-weight: 600;
+    color: #1b406f;
+}
 .instructor img {
     width: 48px;
     height: 48px;
@@ -461,6 +465,14 @@ body.ngm-fullscreen-page .menu-floating.ngm-auto-hidden {
     font-size: 0.88rem;
     line-height: 1.25;
     color: #33435b;
+}
+
+.week-role-tag {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #1b406f;
 }
 
 .week-grid {

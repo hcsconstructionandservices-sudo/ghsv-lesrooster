@@ -79,7 +79,9 @@
         "instructeurs": [
           { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
         ],
-        "pakwerker": { "naam": "Dylan", "foto": "dylan.jpg" }
+        "pakwerkers": [
+          { "naam": "Dylan", "foto": "dylan.jpg" }
+        ]
       },
         {
             "titel": "Apel groep 1 & 2",
@@ -97,7 +99,9 @@
             "instructeurs": [
             { "naam": "René ter Maat", "foto": "rene.jpg" }
             ],
-            "pakwerker": { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+            "pakwerkers": [
+              { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+            ]
         },
         {
             "titel": "Apel MH",
@@ -195,8 +199,10 @@
         "instructeurs": [
           { "naam": "David Havik", "foto": "david.jpg" }
 ],
-        "pakwerker": { "naam": "Dylan", "foto": "dylan.jpg" },
-        "pakwerker": { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+        "pakwerkers": [
+          { "naam": "Dylan", "foto": "dylan.jpg" },
+          { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+        ]
       },
       {
         "titel": "Apel groep 1 (& 2)",
@@ -226,8 +232,10 @@
           { "naam": "David Havik", "foto": "david.jpg" }
 
         ],
-        "pakwerker": { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" },
-        "pakwerker": { "naam": "Dylan", "foto": "dylan.jpg" }
+        "pakwerkers": [
+          { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" },
+          { "naam": "Dylan", "foto": "dylan.jpg" }
+        ]
       }
     ]
   }

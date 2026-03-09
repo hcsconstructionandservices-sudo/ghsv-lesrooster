@@ -240,10 +240,22 @@ function renderLesson(les) {
             </div>`
         ).join('');
     }
+
+    let pakwerkersHtml = '';
+    if (les.pakwerkers && les.pakwerkers.length) {
+        pakwerkersHtml = les.pakwerkers.map(pakwerker =>
+            `<div class="instructor pakwerker">
+                <img src="img/${pakwerker.foto || 'placeholder.png'}" alt="${pakwerker.naam}">
+                <span>Pakwerker: ${pakwerker.naam}</span>
+            </div>`
+        ).join('');
+    }
+
     return `<div class="lesson">
         <div class="lesson-title">${les.titel}</div>
         <div class="lesson-time">${les.start} - ${les.eind}</div>
         ${instructorsHtml}
+        ${pakwerkersHtml}
     </div>`;
 }
 

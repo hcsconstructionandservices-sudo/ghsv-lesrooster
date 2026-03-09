@@ -23,12 +23,22 @@ function toMinutes(timeValue) {
 }
 
 function formatInstructors(lesson) {
-    if (!lesson.instructeurs || lesson.instructeurs.length === 0) {
+    const instructorNames = (lesson.instructeurs || []).map((instr) => instr.naam);
+    const pakwerkerNames = (lesson.pakwerkers || []).map((pakwerker) => pakwerker.naam);
+
+    const lines = [];
+    if (instructorNames.length > 0) {
+        lines.push(`Instructeur(s): ${instructorNames.join(', ')}`);
+    }
+    if (pakwerkerNames.length > 0) {
+        lines.push(`Pakwerker(s): ${pakwerkerNames.join(', ')}`);
+    }
+
+    if (lines.length === 0) {
         return 'Instructeur: n.v.t.';
     }
 
-    const names = lesson.instructeurs.map((instr) => instr.naam).join(', ');
-    return `Instructeur(s): ${names}`;
+    return lines.join(' | ');
 }
 
 function renderInstructorGallery(data) {
@@ -42,10 +52,44 @@ function renderInstructorGallery(data) {
             const list = lesson.instructeurs || [];
             for (const instructor of list) {
                 const key = String(instructor.naam || '').trim().toLowerCase();
-                if (!key || uniqueInstructors.has(key)) continue;
+                if (!key) continue;
+
+                const existing = uniqueInstructors.get(key);
+                if (existing) {
+                    existing.isInstructeur = true;
+                    if (!existing.foto || existing.foto === 'logo-ghsv.jpg') {
+                        existing.foto = instructor.foto || 'logo-ghsv.jpg';
+                    }
+                    continue;
+                }
+
                 uniqueInstructors.set(key, {
                     naam: instructor.naam,
-                    foto: instructor.foto || 'logo-ghsv.jpg'
+                    foto: instructor.foto || 'logo-ghsv.jpg',
+                    isInstructeur: true,
+                    isPakwerker: false
+                });
+            }
+
+            const pakwerkerList = lesson.pakwerkers || [];
+            for (const pakwerker of pakwerkerList) {
+                const key = String(pakwerker.naam || '').trim().toLowerCase();
+                if (!key) continue;
+
+                const existing = uniqueInstructors.get(key);
+                if (existing) {
+                    existing.isPakwerker = true;
+                    if (!existing.foto || existing.foto === 'logo-ghsv.jpg') {
+                        existing.foto = pakwerker.foto || 'logo-ghsv.jpg';
+                    }
+                    continue;
+                }
+
+                uniqueInstructors.set(key, {
+                    naam: pakwerker.naam,
+                    foto: pakwerker.foto || 'logo-ghsv.jpg',
+                    isInstructeur: false,
+                    isPakwerker: true
                 });
             }
         }
@@ -54,7 +98,11 @@ function renderInstructorGallery(data) {
     for (const instructor of extraInstructors) {
         const key = String(instructor.naam || '').trim().toLowerCase();
         if (!key || uniqueInstructors.has(key)) continue;
-        uniqueInstructors.set(key, instructor);
+        uniqueInstructors.set(key, {
+            ...instructor,
+            isInstructeur: true,
+            isPakwerker: false
+        });
     }
 
     const instructors = Array.from(uniqueInstructors.values()).sort((a, b) => {
@@ -67,7 +115,11 @@ function renderInstructorGallery(data) {
     }
 
     weekInstructorsGalleryElem.innerHTML = instructors.map((instructor) => {
-        return `<article class="week-instructor-card"><img src="img/${instructor.foto}" alt="${instructor.naam}" onerror="this.onerror=null;this.src='img/logo-ghsv.jpg';"><div class="week-instructor-name">${instructor.naam}</div></article>`;
+        const roleLabel = instructor.isPakwerker && !instructor.isInstructeur
+            ? '<span class="week-role-tag">Pakwerker</span>'
+            : '';
+
+        return `<article class="week-instructor-card"><img src="img/${instructor.foto}" alt="${instructor.naam}" onerror="this.onerror=null;this.src='img/logo-ghsv.jpg';"><div class="week-instructor-name">${instructor.naam}${roleLabel}</div></article>`;
     }).join('');
 }
 
