@@ -193,6 +193,14 @@
         ]
       },
       {
+        "titel": "Gehoorzaamheid expert/specials",
+        "start": "11:00",
+        "eind": "12:00",
+        "instructeurs": [
+          { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" }
+        ]
+      },
+      {
         "titel": "Mondioring groep 1",
         "start": "13:00",
         "eind": "14:00",
