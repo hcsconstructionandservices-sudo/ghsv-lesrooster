@@ -1,4 +1,5 @@
 [
+  { "type": "image", "src": "img/1april.png" },
   { "type": "image", "src": "img/klusmiddag.png" },
   { "type": "image", "src": "img/Wearhouse.jpg" },
   { "type": "video", "src": "https://www.ghsv.nl/wp-content/uploads/2024/10/P1122257.mp4" },
