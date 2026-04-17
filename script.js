@@ -119,8 +119,7 @@ const bannerMessages = [
     'Wij zoeken hulp, wordt vrijwilliger en help mee met activiteiten en evenementen!',
     '2 mei hebben we de RtM-dag, een dag vol leuke activiteiten en wedstrijden!',
     'Uw reclame ook langs het veld? Neem contact op voor sponsormogelijkheden!',
-    '30 mei de Bontehondendag, een gezellige dag vol demonstraties, spelletjes en kraampjes!',
-    'Op 11 april hebben we de jaarlijkse klusdag, kom jij ook helpen?'
+    '30 mei de Bontehondendag, een gezellige dag vol demonstraties, spelletjes en kraampjes!'
 ];
 let bannerIndex = 0;
 const bannerElem = document.getElementById('banner-message');
