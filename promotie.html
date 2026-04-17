@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media</title>
+    <title>GHSV Promotie</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="ngm-fullscreen-page">
     <div class="banner">
         <span class="banner-datetime">GHSV Harderwijk</span>
-        <span class="banner-logo"><img src="img/logo-ghsv.jpg" alt="GHSV Logo" /></span>
-        <span id="banner-message">Media</span>
+        <span class="banner-logo"><img src="img/logo-ghsv.jpg" alt="GHSV Logo"></span>
+        <span id="banner-message">GHSV Promotie</span>
     </div>
 
     <div class="menu-floating">
@@ -24,28 +24,24 @@
             <a class="menu-link" href="media.html">Media</a>
             <a class="menu-link" href="galerij.html">Galerij</a>
             <a class="menu-link" href="promotie.html">Promotie</a>
+            <a class="menu-link" href="promotie-beheer.html">Promotie Beheer</a>
         </div>
     </div>
 
-    <main class="home-main">
-        <section class="home-card">
-            <h1>Media</h1>
-            <p>Hier kun je media tonen, zoals afbeeldingen en video's.</p>
-            <p>De pagina is aangemaakt en klaar om verder in te vullen.</p>
-            <div class="home-actions">
-                <button id="media-photos-btn" class="home-button" type="button" aria-expanded="false" aria-controls="media-folder-list">foto's</button>
-            </div>
-            <div id="media-folder-list" class="media-folder-list" hidden>
-                <h2>Kies een map</h2>
-                <div id="media-folder-options" class="media-folder-options">
-                </div>
-                <p id="media-folder-selected" class="media-folder-selected">Klik op een map om de galerij te openen.</p>
+    <main class="ngm-main">
+        <section class="ngm-card">
+            <h1>GHSV Promotiepagina</h1>
+            <p>Doorlopende afspeellijst uit promotie-media.json. Ondersteunt lokale media uit img en externe links.</p>
+            <div id="promo-stage" class="ngm-ad-stage">
+                <img id="promo-image" alt="Promotie afbeelding" hidden>
+                <video id="promo-video" muted autoplay playsinline controls hidden></video>
+                <iframe id="promo-iframe" title="Promotie webvideo" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" hidden></iframe>
+                <div id="promo-empty" class="ngm-ad-empty">Promotie wordt geladen...</div>
             </div>
         </section>
     </main>
 
-    <script src="media-index.js"></script>
     <script src="menu.js"></script>
-    <script src="media.js"></script>
+    <script src="promotie.js"></script>
 </body>
 </html>

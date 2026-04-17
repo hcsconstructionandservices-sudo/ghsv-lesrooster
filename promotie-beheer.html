@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotie Beheer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="banner">
+        <span class="banner-datetime">GHSV Harderwijk</span>
+        <span class="banner-logo"><img src="img/logo-ghsv.jpg" alt="GHSV Logo"></span>
+        <span id="banner-message">Promotie Beheer</span>
+    </div>
+
+    <div class="menu-floating">
+        <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="quick-menu">Menu</button>
+        <div id="quick-menu" class="quick-menu" hidden>
+            <a class="menu-link" href="index.html">Home</a>
+            <a class="menu-link" href="rooster.html">Lesrooster</a>
+            <a class="menu-link" href="weekoverzicht.html">Weekoverzicht</a>
+            <a class="menu-link" href="lesmateriaal.html">Lesmateriaal</a>
+            <a class="menu-link" href="ngm-cafe.html">NGM-Cafe</a>
+            <a class="menu-link" href="media.html">Media</a>
+            <a class="menu-link" href="galerij.html">Galerij</a>
+            <a class="menu-link" href="promotie.html">Promotie</a>
+            <a class="menu-link" href="promotie-beheer.html">Promotie Beheer</a>
+        </div>
+    </div>
+
+    <main class="home-main">
+        <section class="home-card promo-admin-card">
+            <h1>Promotie Beheer</h1>
+            <p>Beheer hier de inhoud van promotie-media.json. Gebruik file voor bestanden in de map img en src voor weblinks.</p>
+
+            <div class="promo-admin-grid">
+                <section class="promo-admin-panel">
+                    <h2>Instellingen</h2>
+                    <div class="promo-admin-fields">
+                        <label>Afbeelding duur (ms)
+                            <input id="setting-image-ms" type="number" min="500" step="500" value="9000">
+                        </label>
+                        <label>Web duur (ms)
+                            <input id="setting-web-ms" type="number" min="500" step="500" value="22000">
+                        </label>
+                        <label>Video fallback duur (ms)
+                            <input id="setting-video-ms" type="number" min="500" step="500" value="30000">
+                        </label>
+                    </div>
+                </section>
+
+                <section class="promo-admin-panel">
+                    <h2>Nieuw item</h2>
+                    <div class="promo-admin-fields">
+                        <label>Type
+                            <select id="new-item-type">
+                                <option value="image">image</option>
+                                <option value="video">video</option>
+                                <option value="web">web</option>
+                            </select>
+                        </label>
+                        <label>File (in img-map)
+                            <div class="promo-file-row">
+                                <input id="new-item-file" type="text" placeholder="bijv. poster.jpg of video.mp4">
+                                <label class="promo-browse-btn" title="Kies een bestand uit img-map">
+                                    Bladeren
+                                    <input id="new-item-file-picker" type="file" accept="image/*,video/*,.mp4,.webm,.ogg,.jpg,.jpeg,.png,.gif,.webp" hidden>
+                                </label>
+                            </div>
+                        </label>
+                        <label>Src (pad of webadres)
+                            <input id="new-item-src" type="text" placeholder="bijv. img/poster.jpg of https://...">
+                        </label>
+                        <label>Duur in ms (optioneel)
+                            <input id="new-item-duration" type="number" min="500" step="500" placeholder="bijv. 12000">
+                        </label>
+                        <button id="add-item-btn" class="home-button" type="button">Item toevoegen</button>
+                    </div>
+                </section>
+            </div>
+
+            <section class="promo-admin-panel">
+                <h2>Items</h2>
+                <div id="items-empty" class="gallery-empty" hidden>Er zijn nog geen promotie-items.</div>
+                <div id="items-list" class="promo-item-list"></div>
+            </section>
+
+            <section class="promo-admin-panel">
+                <h2>JSON resultaat</h2>
+                <p class="promo-admin-hint">Klik op Opslaan om de tekst te vernieuwen. Download het bestand en vervang daarna promotie-media.json. Of importeer een bestaand JSON-bestand.</p>
+                <div class="promo-admin-actions">
+                    <button id="build-json-btn" class="home-button" type="button">Opslaan naar JSON</button>
+                    <button id="download-json-btn" class="home-button" type="button">Download JSON</button>
+                    <label class="home-button promo-import-label">
+                        Importeer JSON
+                        <input id="import-json-input" type="file" accept=".json,application/json" hidden>
+                    </label>
+                </div>
+                <textarea id="json-output" class="promo-json-output" spellcheck="false"></textarea>
+                <p id="save-status" class="media-folder-selected">Gereed.</p>
+            </section>
+        </section>
+    </main>
+
+    <script src="menu.js"></script>
+    <script src="promotie-beheer.js"></script>
+</body>
+</html>
