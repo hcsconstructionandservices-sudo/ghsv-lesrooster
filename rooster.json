@@ -50,21 +50,21 @@
         "start": "18:45",
         "eind": "19:30",
         "instructeurs": [
-            { "naam": "Annelies Varkenvisser", "foto": "annelies.jpg" }
+            { "naam": "Marina", "foto": "marina.jpg" }
         ]
       },
       { "titel": "Agility basis",
         "start": "19:15",
         "eind": "20:15",
         "instructeurs": [
-          { "naam": "Annelies Varkenvisser", "foto": "annelies.jpg" }
+          { "naam": "Marina", "foto": "marina.jpg" }
         ]
       },
       { "titel": "Agility expert",
         "start": "20:15",
         "eind": "21:15",
         "instructeurs": [
-          { "naam": "Annelies Varkenvisser", "foto": "annelies.jpg" }
+          { "naam": "Marina", "foto": "marina.jpg" }
         ]
       }
     ]
@@ -109,14 +109,6 @@
             "eind": "19:45",
             "instructeurs": [
             { "naam": "René ter Maat", "foto": "rene.jpg" }
-            ]
-        },
-        {
-            "titel": "Gehoorzaamheid expert/specials",
-            "start": "19:30",
-            "eind": "21:00",
-            "instructeurs": [
-            { "naam": "Annelies Varkenvisser", "foto": "annelies.jpg" }
             ]
         }
     ]
