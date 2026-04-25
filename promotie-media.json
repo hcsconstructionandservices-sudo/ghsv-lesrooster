@@ -1,10 +1,14 @@
 {
   "settings": {
-    "imageDurationMs": 9000,
+    "imageDurationMs": 10000,
     "webDurationMs": 22000,
     "videoFallbackDurationMs": 30000
   },
   "items": [
+    {
+      "type": "image",
+      "file": "exanendag 25 april.png"
+    },
     {
       "type": "video",
       "file": "capcutwelkom.mp4"
