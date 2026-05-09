@@ -50,21 +50,21 @@
         "start": "18:45",
         "eind": "19:30",
         "instructeurs": [
-            { "naam": "Marina", "foto": "marina.jpg" }
+            { "naam": "Marina Tunc", "foto": "marina.jpg" }
         ]
       },
       { "titel": "Agility basis",
         "start": "19:15",
         "eind": "20:15",
         "instructeurs": [
-          { "naam": "Marina", "foto": "marina.jpg" }
+          { "naam": "Marina Tunc", "foto": "marina.jpg" }
         ]
       },
       { "titel": "Agility expert",
         "start": "20:15",
         "eind": "21:15",
         "instructeurs": [
-          { "naam": "Marina", "foto": "marina.jpg" }
+          { "naam": "Marina Tunc", "foto": "marina.jpg" }
         ]
       }
     ]

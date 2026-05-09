@@ -1,6 +1,6 @@
 {
   "settings": {
-    "imageDurationMs": 9000,
+    "imageDurationMs": 10000,
     "webDurationMs": 22000,
     "videoFallbackDurationMs": 30000
   },
