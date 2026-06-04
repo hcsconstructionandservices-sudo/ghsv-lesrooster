@@ -115,10 +115,8 @@ const bannerMessages = [
     'Schrijf je in op onze website! Scan de QR-code of ga naar onze inschrijfpagina.',
     'Volg ons op Facebook en Instagram voor nieuws!',
     'Laat een riem op maat maken, vraag ernaar bij de instructeurs!',
-    'Vergeet niet de examendag in de agenda te zetten!',
     'Wij zoeken hulp, wordt vrijwilliger en help mee met activiteiten en evenementen!',
-    'Uw reclame ook langs het veld? Neem contact op voor sponsormogelijkheden!',
-    '30 mei de Bontehondendag, een gezellige dag vol demonstraties, spelletjes en kraampjes!'
+    'Uw reclame ook langs het veld? Neem contact op voor sponsormogelijkheden!'
 ];
 let bannerIndex = 0;
 const bannerElem = document.getElementById('banner-message');
