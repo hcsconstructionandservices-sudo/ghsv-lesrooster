@@ -31,72 +31,41 @@
     <main class="home-main">
         <section class="home-card promo-admin-card">
             <h1>Promotie Beheer</h1>
-            <p>Beheer hier de inhoud van promotie-media.json. Gebruik file voor bestanden in de map img en src voor weblinks.</p>
-
-            <div class="promo-admin-grid">
-                <section class="promo-admin-panel">
-                    <h2>Instellingen</h2>
-                    <div class="promo-admin-fields">
-                        <label>Afbeelding duur (ms)
-                            <input id="setting-image-ms" type="number" min="500" step="500" value="9000">
-                        </label>
-                        <label>Web duur (ms)
-                            <input id="setting-web-ms" type="number" min="500" step="500" value="22000">
-                        </label>
-                        <label>Video fallback duur (ms)
-                            <input id="setting-video-ms" type="number" min="500" step="500" value="30000">
-                        </label>
-                    </div>
-                </section>
-
-                <section class="promo-admin-panel">
-                    <h2>Nieuw item</h2>
-                    <div class="promo-admin-fields">
-                        <label>Type
-                            <select id="new-item-type">
-                                <option value="image">image</option>
-                                <option value="video">video</option>
-                                <option value="web">web</option>
-                            </select>
-                        </label>
-                        <label>File (in img-map)
-                            <div class="promo-file-row">
-                                <input id="new-item-file" type="text" placeholder="bijv. poster.jpg of video.mp4">
-                                <label class="promo-browse-btn" title="Kies een bestand uit img-map">
-                                    Bladeren
-                                    <input id="new-item-file-picker" type="file" accept="image/*,video/*,.mp4,.webm,.ogg,.jpg,.jpeg,.png,.gif,.webp" hidden>
-                                </label>
-                            </div>
-                        </label>
-                        <label>Src (pad of webadres)
-                            <input id="new-item-src" type="text" placeholder="bijv. img/poster.jpg of https://...">
-                        </label>
-                        <label>Duur in ms (optioneel)
-                            <input id="new-item-duration" type="number" min="500" step="500" placeholder="bijv. 12000">
-                        </label>
-                        <button id="add-item-btn" class="home-button" type="button">Item toevoegen</button>
-                    </div>
-                </section>
-            </div>
+            <p>Upload foto's of video's rechtstreeks vanaf je pc of mobiel. Ze verschijnen meteen als miniatuur en je kunt ze tonen/verbergen en in volgorde zetten.</p>
 
             <section class="promo-admin-panel">
-                <h2>Items</h2>
+                <h2>Direct uploaden</h2>
+                <div class="promo-upload-actions">
+                    <label class="home-button promo-upload-label">
+                        Upload foto's / video's
+                        <input id="upload-input" type="file" multiple accept="image/*,video/*" hidden>
+                    </label>
+                    <button id="refresh-items-btn" class="home-button" type="button">Vernieuwen</button>
+                </div>
+                <p id="upload-status" class="promo-admin-hint">Kies bestanden van je pc of mobiel. De bestanden worden lokaal in deze browser opgeslagen.</p>
+            </section>
+
+            <section class="promo-admin-panel">
+                <h2>Media-overzicht</h2>
                 <div id="items-empty" class="gallery-empty" hidden>Er zijn nog geen promotie-items.</div>
                 <div id="items-list" class="promo-item-list"></div>
             </section>
 
             <section class="promo-admin-panel">
-                <h2>JSON resultaat</h2>
-                <p class="promo-admin-hint">Klik op Opslaan om de tekst te vernieuwen. Download het bestand en vervang daarna promotie-media.json. Of importeer een bestaand JSON-bestand.</p>
-                <div class="promo-admin-actions">
-                    <button id="build-json-btn" class="home-button" type="button">Opslaan naar JSON</button>
-                    <button id="download-json-btn" class="home-button" type="button">Download JSON</button>
-                    <label class="home-button promo-import-label">
-                        Importeer JSON
-                        <input id="import-json-input" type="file" accept=".json,application/json" hidden>
+                <h2>Instellingen</h2>
+                <div class="promo-admin-fields">
+                    <label>Afbeelding duur (seconden)
+                        <input id="setting-image-ms" type="number" min="1" step="1" value="9">
                     </label>
                 </div>
-                <textarea id="json-output" class="promo-json-output" spellcheck="false"></textarea>
+            </section>
+
+            <section class="promo-admin-panel">
+                <h2>Opslaan</h2>
+                <div class="promo-admin-actions">
+                    <button id="save-json-btn" class="home-button" type="button">Opslaan naar promotie-media.json</button>
+                    <button id="clear-storage-btn" class="home-button" type="button">Wis lokale beheerdata</button>
+                </div>
                 <p id="save-status" class="media-folder-selected">Gereed.</p>
             </section>
         </section>

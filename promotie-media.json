@@ -6,40 +6,18 @@
   },
   "items": [
     {
-      "type": "video",
-      "file": "capcutwelkom.mp4"
-    },
-    {
-      "type": "video",
-      "file": "youcut2.mp4"
-    },
-    {
-      "type": "video",
-      "file": "puppyspam.mp4"
-    },
-    {
-      "type": "video",
-      "src": "https://www.ghsv.nl/wp-content/uploads/2024/10/P1122257.mp4"
-    },
-    {
       "type": "image",
-      "file": "logo-ghsv.jpg"
+      "active": true,
+      "durationMs": 9000,
+      "file": "/img/1784812249393-9d2c06e1d850e-1784746892638-a6ad4dbaffd7b-Designer.jpeg",
+      "name": "1784746892638-a6ad4dbaffd7b-Designer.jpeg"
     },
     {
       "type": "video",
-      "file": "mondioring.mp4"
-    },
-    {
-      "type": "video",
-      "file": "youcut3.mp4"
-    },
-    {
-      "type": "image",
-      "file": "agilitysite.png"
-    },
-    {
-      "type": "video",
-      "file": "youcut1.mp4"
+      "active": true,
+      "durationMs": 30000,
+      "file": "/img/1784812258686-f585ccee7a3b1-P1122257-1-.mp4",
+      "name": "P1122257[1].mp4"
     }
   ]
 }

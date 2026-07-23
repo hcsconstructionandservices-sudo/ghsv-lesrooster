@@ -27,13 +27,53 @@
     </div>
 
     <main class="home-main">
-        <section class="home-card">
+        <section class="home-card lesson-card">
             <h1>Lesmateriaal</h1>
-            <p>Hier kun je lesmateriaal, oefeningen en documenten per cursus plaatsen.</p>
-            <p>Deze pagina is aangemaakt en klaar om verder te vullen.</p>
+            <p>Voeg documenten, afbeeldingen of filmpjes toe. Klik op een kaart om het te openen. Rechtsklik voor hernoemen of verwijderen.</p>
+
+            <section class="lesson-panel">
+                <h2>Toevoegen</h2>
+                <div class="lesson-actions">
+                    <label class="home-button lesson-upload-label">
+                        Bestanden toevoegen
+                        <input id="materials-upload-input" type="file" multiple accept="image/*,video/*,application/pdf,.pdf,.txt,.doc,.docx,.ppt,.pptx,.xls,.xlsx" hidden>
+                    </label>
+                    <button id="materials-refresh-btn" class="home-button" type="button">Vernieuwen</button>
+                </div>
+                <p id="materials-status" class="promo-admin-hint">Upload meerdere bestanden tegelijk. Afbeeldingen, video’s en pdf’s kun je direct openen.</p>
+            </section>
+
+            <section class="lesson-panel">
+                <div class="lesson-panel-head">
+                    <h2>Overzicht</h2>
+                    <span id="materials-count" class="lesson-count">0 items</span>
+                </div>
+                <div id="materials-empty" class="gallery-empty" hidden>Nog geen lesmateriaal toegevoegd.</div>
+                <div id="materials-list" class="materials-grid"></div>
+            </section>
         </section>
     </main>
 
+    <div id="material-modal" class="material-modal" hidden>
+        <div class="material-modal-shell">
+            <div id="material-modal-controls" class="material-modal-controls">
+                <button id="material-modal-prev" class="material-modal-action" type="button" aria-label="Vorige item">Vorige</button>
+                <button id="material-modal-fullscreen" class="material-modal-action" type="button" hidden>Volledig scherm</button>
+                <button id="material-modal-next" class="material-modal-action" type="button" aria-label="Volgende item">Volgende</button>
+                <button id="material-modal-close" class="material-modal-close" type="button">Sluiten</button>
+            </div>
+            <div id="material-modal-body" class="material-modal-body"></div>
+            <div id="material-modal-caption" class="material-modal-caption"></div>
+        </div>
+    </div>
+
+    <div id="material-context-menu" class="material-context-menu" hidden>
+        <button id="material-context-open" type="button">Openen</button>
+        <button id="material-context-rename" type="button">Hernoemen</button>
+        <button id="material-context-delete" type="button" class="danger">Verwijderen</button>
+    </div>
+
     <script src="menu.js"></script>
+    <script src="lesmateriaal.js"></script>
 </body>
 </html>
