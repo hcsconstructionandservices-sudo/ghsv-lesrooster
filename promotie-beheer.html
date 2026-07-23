@@ -46,6 +46,19 @@
             </section>
 
             <section class="promo-admin-panel">
+                <h2>Link toevoegen</h2>
+                <div class="promo-admin-fields">
+                    <label>Media link (http/https)
+                        <input id="media-link-input" type="url" placeholder="https://...">
+                    </label>
+                </div>
+                <div class="promo-admin-actions">
+                    <button id="add-media-link-btn" class="home-button" type="button">Voeg link toe</button>
+                </div>
+                <p class="promo-admin-hint">Plak een directe afbeelding- of videolink. Andere links worden als webitem toegevoegd.</p>
+            </section>
+
+            <section class="promo-admin-panel">
                 <h2>Media-overzicht</h2>
                 <div id="items-empty" class="gallery-empty" hidden>Er zijn nog geen promotie-items.</div>
                 <div id="items-list" class="promo-item-list"></div>
@@ -64,6 +77,7 @@
                 <h2>Opslaan</h2>
                 <div class="promo-admin-actions">
                     <button id="save-json-btn" class="home-button" type="button">Opslaan naar promotie-media.json</button>
+                    <button id="download-json-btn" class="home-button" type="button">Download promotie-media.json</button>
                     <button id="clear-storage-btn" class="home-button" type="button">Wis lokale beheerdata</button>
                 </div>
                 <p id="save-status" class="media-folder-selected">Gereed.</p>

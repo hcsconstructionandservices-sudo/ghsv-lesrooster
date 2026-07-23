@@ -1,10 +1,13 @@
 const settingImageMsInput = document.getElementById('setting-image-ms');
 
 const uploadInput = document.getElementById('upload-input');
+const mediaLinkInput = document.getElementById('media-link-input');
+const addMediaLinkBtn = document.getElementById('add-media-link-btn');
 const refreshItemsBtn = document.getElementById('refresh-items-btn');
 const itemsList = document.getElementById('items-list');
 const itemsEmpty = document.getElementById('items-empty');
 const saveJsonBtn = document.getElementById('save-json-btn');
+const downloadJsonBtn = document.getElementById('download-json-btn');
 const clearStorageBtn = document.getElementById('clear-storage-btn');
 const saveStatus = document.getElementById('save-status');
 const uploadStatus = document.getElementById('upload-status');
@@ -15,6 +18,7 @@ const DB_VERSION = 1;
 
 let dbPromise = null;
 let previewUrls = new Set();
+let serverMode = null;
 
 let promoState = {
     settings: {
@@ -91,6 +95,23 @@ function normalizePayload(raw) {
 function setStatus(text) {
     if (saveStatus) saveStatus.textContent = text;
     if (uploadStatus) uploadStatus.textContent = text;
+}
+
+function isServerModeEnabled() {
+    if (typeof serverMode === 'boolean') return Promise.resolve(serverMode);
+    return fetch('/health', { cache: 'no-store' })
+        .then((response) => {
+            if (!response.ok) throw new Error('No health endpoint');
+            return response.json();
+        })
+        .then((data) => {
+            serverMode = Boolean(data && data.ok === true);
+            return serverMode;
+        })
+        .catch(() => {
+            serverMode = false;
+            return false;
+        });
 }
 
 function msToSeconds(value, fallbackMs) {
@@ -192,6 +213,20 @@ function hydrateFromServer() {
         });
 }
 
+function downloadPromoJson() {
+    const payload = updateJsonOutput();
+    const blob = new Blob([JSON.stringify(payload, null, 2) + '\n'], { type: 'application/json;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'promotie-media.json';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    URL.revokeObjectURL(url);
+    setStatus('JSON gedownload. Upload media-bestanden apart naar img/ op de server.');
+}
+
 function updateJsonOutput() {
     return buildPayload();
 }
@@ -204,6 +239,78 @@ function normalizeMediaPath(value) {
     if (trimmed.startsWith('/')) return trimmed;
     if (/^(\.\/|\.\.\/|img\/)/i.test(trimmed)) return trimmed;
     return `img/${trimmed}`;
+}
+
+function inferTypeFromUrl(url) {
+    if (/\.(jpg|jpeg|png|webp|gif|bmp)(\?.*)?$/i.test(url)) return 'image';
+    if (/\.(mp4|webm|ogg|m3u8|mpd)(\?.*)?$/i.test(url)) return 'video';
+    return 'web';
+}
+
+function guessNameFromUrl(url) {
+    try {
+        const parsed = new URL(url);
+        const lastSegment = parsed.pathname.split('/').filter(Boolean).pop();
+        if (lastSegment) return decodeURIComponent(lastSegment);
+        return parsed.hostname || 'web-link';
+    } catch (error) {
+        return 'web-link';
+    }
+}
+
+async function addMediaLinkFromInput() {
+    const raw = mediaLinkInput && typeof mediaLinkInput.value === 'string' ? mediaLinkInput.value.trim() : '';
+    if (!raw) {
+        setStatus('Plak eerst een geldige link.');
+        return;
+    }
+
+    let url;
+    try {
+        url = new URL(raw);
+    } catch (error) {
+        setStatus('Ongeldige link. Gebruik een volledige http/https URL.');
+        return;
+    }
+
+    if (!/^https?:$/i.test(url.protocol)) {
+        setStatus('Alleen http/https links zijn toegestaan.');
+        return;
+    }
+
+    const normalizedUrl = url.toString();
+    const type = inferTypeFromUrl(normalizedUrl);
+    const name = guessNameFromUrl(normalizedUrl);
+
+    const newItem = sanitizeItem({
+        id: createId(),
+        type,
+        active: true,
+        name,
+        src: normalizedUrl,
+        durationMs: type === 'image' ? 9000 : type === 'video' ? 30000 : 22000
+    });
+
+    if (!newItem) {
+        setStatus('Kon deze link niet toevoegen.');
+        return;
+    }
+
+    promoState.items = [...promoState.items, newItem];
+    await saveItemsToDb();
+    const useServer = await isServerModeEnabled();
+    if (useServer) {
+        await savePromoJson('Nieuwe link wordt opgeslagen...');
+    }
+    renderItems();
+    updateJsonOutput();
+
+    if (mediaLinkInput) mediaLinkInput.value = '';
+    if (useServer) {
+        setStatus('Link toegevoegd en opgeslagen.');
+    } else {
+        setStatus('Link lokaal toegevoegd. Gebruik Download promotie-media.json voor export.');
+    }
 }
 
 function getPreviewUrl(item) {
@@ -364,10 +471,17 @@ async function handleUploadedFiles(files) {
     }
 
     try {
+        const useServer = await isServerModeEnabled();
         const pending = await Promise.all(Array.from(files).map(async (file) => {
-            const uploadResult = await uploadFileToServer(file);
             const isVideo = file.type.startsWith('video/') || /\.(mp4|webm|ogg)$/i.test(file.name);
             const type = isVideo ? 'video' : 'image';
+            let filePath = file.name;
+
+            if (useServer) {
+                const uploadResult = await uploadFileToServer(file);
+                filePath = uploadResult.url || uploadResult.path || file.name;
+            }
+
             return sanitizeItem({
                 id: createId(),
                 type,
@@ -375,7 +489,7 @@ async function handleUploadedFiles(files) {
                 originalName: file.name,
                 active: true,
                 durationMs: type === 'image' ? 9000 : 30000,
-                file: uploadResult.url || uploadResult.path || file.name,
+                file: filePath,
                 blob: file
             });
         }));
@@ -388,38 +502,51 @@ async function handleUploadedFiles(files) {
 
         promoState.items = [...promoState.items, ...validItems];
         await saveItemsToDb();
-        await savePromoJson('Nieuwe upload wordt opgeslagen...');
+        if (useServer) {
+            await savePromoJson('Nieuwe upload wordt opgeslagen...');
+        }
         renderItems();
         updateJsonOutput();
-        setStatus(`${validItems.length} bestand(en) toegevoegd. Je kunt ze nu zichtbaar of verborgen maken.`);
+        if (useServer) {
+            setStatus(`${validItems.length} bestand(en) toegevoegd. Je kunt ze nu zichtbaar of verborgen maken.`);
+        } else {
+            setStatus(`${validItems.length} bestand(en) lokaal toegevoegd. Gebruik Download promotie-media.json voor export.`);
+        }
     } catch (error) {
         setStatus('Uploaden is mislukt.');
     }
 }
 
 function savePromoJson(statusText = 'Opslaan naar promotie-media.json...') {
-    const payload = updateJsonOutput();
-    setStatus(statusText);
+    return isServerModeEnabled().then((useServer) => {
+        if (!useServer) {
+            setStatus('Opslaan naar server kan niet op GitHub Pages. Gebruik Download promotie-media.json.');
+            return { ok: false, localOnly: true };
+        }
 
-    return fetch('/api/promo-media', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data && data.ok) {
-                return hydrateFromServer().then(() => {
-                    setStatus('Opgeslagen in promotie-media.json.');
-                    return data;
-                });
-            }
-            throw new Error('Opslaan mislukt');
+        const payload = updateJsonOutput();
+        setStatus(statusText);
+
+        return fetch('/api/promo-media', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
         })
-        .catch(() => {
-            setStatus('Opslaan mislukt.');
-            throw new Error('Opslaan mislukt');
-        });
+            .then((response) => response.json())
+            .then((data) => {
+                if (data && data.ok) {
+                    return hydrateFromServer().then(() => {
+                        setStatus('Opgeslagen in promotie-media.json.');
+                        return data;
+                    });
+                }
+                throw new Error('Opslaan mislukt');
+            })
+            .catch(() => {
+                setStatus('Opslaan mislukt.');
+                throw new Error('Opslaan mislukt');
+            });
+    });
 }
 
 function uploadFileToServer(file) {
@@ -438,26 +565,32 @@ function uploadFileToServer(file) {
 }
 
 function loadInitialData() {
-    hydrateFromServer()
-        .then(() => {
-            setStatus('Bestaande promotie-media.json geladen als beheeritems.');
-        })
-        .catch(() => {
-            loadItemsFromDb().then((items) => {
-                if (items.length) {
-                    promoState.items = items;
+    isServerModeEnabled().then((useServer) => {
+        hydrateFromServer()
+            .then(() => {
+                if (useServer) {
+                    setStatus('Bestaande promotie-media.json geladen als beheeritems.');
+                } else {
+                    setStatus('GitHub Pages modus: lokaal beheren en JSON downloaden.');
+                }
+            })
+            .catch(() => {
+                loadItemsFromDb().then((items) => {
+                    if (items.length) {
+                        promoState.items = items;
+                        setSettingsFromState();
+                        renderItems();
+                        updateJsonOutput();
+                        setStatus('Bestaande beheeritems geladen.');
+                        return;
+                    }
                     setSettingsFromState();
                     renderItems();
                     updateJsonOutput();
-                    setStatus('Bestaande beheeritems geladen.');
-                    return;
-                }
-                setSettingsFromState();
-                renderItems();
-                updateJsonOutput();
-                setStatus('Kon de beheeritems niet laden. Je kunt ze direct uploaden.');
+                    setStatus('Kon de beheeritems niet laden. Je kunt ze direct uploaden.');
+                });
             });
-        });
+    });
 }
 
 function clearStoredItems() {
@@ -486,6 +619,18 @@ if (uploadInput) {
 
 if (refreshItemsBtn) refreshItemsBtn.addEventListener('click', () => loadInitialData());
 if (saveJsonBtn) saveJsonBtn.addEventListener('click', savePromoJson);
+if (downloadJsonBtn) downloadJsonBtn.addEventListener('click', downloadPromoJson);
+if (addMediaLinkBtn) addMediaLinkBtn.addEventListener('click', () => {
+    addMediaLinkFromInput().catch(() => setStatus('Toevoegen van link is mislukt.'));
+});
+if (mediaLinkInput) {
+    mediaLinkInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            addMediaLinkFromInput().catch(() => setStatus('Toevoegen van link is mislukt.'));
+        }
+    });
+}
 if (clearStorageBtn) {
     clearStorageBtn.addEventListener('click', () => {
         clearStoredItems().catch(() => setStatus('Wisactie mislukt.'));

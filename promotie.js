@@ -49,6 +49,7 @@ function hideAllMedia() {
     if (promoIframe) { promoIframe.hidden = true; promoIframe.removeAttribute('src'); _iframeType = null; }
 }
 function isDirectVideoUrl(src) { return /\.(mp4|webm|ogg)(\?.*)?$/i.test(src); }
+function isLikelyVideoStreamUrl(src) { return /\.(m3u8|mpd)(\?.*)?$/i.test(src); }
 function isImageUrl(src) { return /\.(jpg|jpeg|png|webp|gif|bmp)(\?.*)?$/i.test(src); }
 function normalizeMediaPath(value) {
     if (typeof value !== 'string') return '';
@@ -78,7 +79,76 @@ function toVimeoEmbed(url) { try { const parsed = new URL(url); if (!parsed.host
 function toWebVideoEmbed(url) { const yt = toYoutubeEmbed(url); if (yt) return { embedUrl: yt, type: 'youtube' }; const vimeo = toVimeoEmbed(url); if (vimeo) return { embedUrl: vimeo, type: 'vimeo' }; return { embedUrl: url, type: null }; }
 function getConfigDuration(type, itemDuration) { const settings = promoConfig && typeof promoConfig.settings === 'object' ? promoConfig.settings : {}; if (type === 'web' || type === 'video') return 2147483647; if (typeof itemDuration === 'number' && Number.isFinite(itemDuration) && itemDuration > 0) return itemDuration; if (type === 'image' && typeof settings.imageDurationMs === 'number' && settings.imageDurationMs > 0) return settings.imageDurationMs; if (type === 'image') return DEFAULT_IMAGE_DURATION_MS; return DEFAULT_WEB_DURATION_MS; }
 function showNext() { if (_navigating) return; _navigating = true; clearPromoTimer(); if (!promoMediaList.length) { if (promoEmpty) { promoEmpty.hidden = false; promoEmpty.textContent = 'Geen actieve promotie-items gevonden.'; } _navigating = false; return; } promoIndex = (promoIndex + 1) % promoMediaList.length; _navigating = false; showCurrent(); }
-function showCurrent() { if (!promoMediaList.length) return; const item = promoMediaList[promoIndex] || {}; const type = String(item.type || '').toLowerCase(); const src = resolveSource(item); const isHttpUrl = /^https?:\/\//i.test(src); const isImage = type === 'image' || (type !== 'video' && type !== 'web' && isImageUrl(src)); const isDirectVideo = type === 'video' || isDirectVideoUrl(src); const isWeb = type === 'web' || type === 'webvideo' || (isHttpUrl && !isDirectVideo && !isImage); hideAllMedia(); if (promoEmpty) promoEmpty.hidden = true; if (!src) { scheduleNext(1000); return; } if (isImage && promoImage) { promoImage.onerror = () => { clearPromoTimer(); showNext(); }; promoImage.src = src; promoImage.hidden = false; scheduleNext(getConfigDuration('image', item.durationMs)); return; } if (isDirectVideo && promoVideo && !isWeb) { if (_videoEndedHandler) promoVideo.removeEventListener('ended', _videoEndedHandler); if (_videoErrorHandler) promoVideo.removeEventListener('error', _videoErrorHandler); _videoEndedHandler = () => { clearPromoTimer(); promoVideo.removeEventListener('ended', _videoEndedHandler); promoVideo.removeEventListener('error', _videoErrorHandler); _videoEndedHandler = null; _videoErrorHandler = null; showNext(); }; _videoErrorHandler = () => { clearPromoTimer(); promoVideo.removeEventListener('ended', _videoEndedHandler); promoVideo.removeEventListener('error', _videoErrorHandler); _videoEndedHandler = null; _videoErrorHandler = null; showNext(); }; promoVideo.addEventListener('ended', _videoEndedHandler); promoVideo.addEventListener('error', _videoErrorHandler); promoVideo.src = src; promoVideo.hidden = false; promoVideo.load(); promoVideo.play().catch(() => {}); return; } if (isWeb && promoIframe) { const embed = toWebVideoEmbed(src); promoIframe.src = embed.embedUrl; promoIframe.hidden = false; _iframeType = embed.type; return; } scheduleNext(1000); }
+function showCurrent() {
+    if (!promoMediaList.length) return;
+
+    const item = promoMediaList[promoIndex] || {};
+    const type = String(item.type || '').toLowerCase();
+    const src = resolveSource(item);
+    const isHttpUrl = /^https?:\/\//i.test(src);
+    const isImage = type === 'image' || (type !== 'video' && type !== 'web' && !type.startsWith('web') && isImageUrl(src));
+    const isVideoSource = type === 'video' || isDirectVideoUrl(src) || isLikelyVideoStreamUrl(src);
+    const isWebType = type === 'web' || type === 'webvideo';
+    const isWebPage = isWebType || (isHttpUrl && !isVideoSource && !isImage);
+
+    hideAllMedia();
+    if (promoEmpty) promoEmpty.hidden = true;
+
+    if (!src) {
+        scheduleNext(1000);
+        return;
+    }
+
+    if (isImage && promoImage) {
+        promoImage.onerror = () => { clearPromoTimer(); showNext(); };
+        promoImage.src = src;
+        promoImage.hidden = false;
+        scheduleNext(getConfigDuration('image', item.durationMs));
+        return;
+    }
+
+    // Play direct video links in the video element, including webvideo items with .mp4/.m3u8/etc.
+    if (isVideoSource && promoVideo) {
+        if (_videoEndedHandler) promoVideo.removeEventListener('ended', _videoEndedHandler);
+        if (_videoErrorHandler) promoVideo.removeEventListener('error', _videoErrorHandler);
+
+        _videoEndedHandler = () => {
+            clearPromoTimer();
+            promoVideo.removeEventListener('ended', _videoEndedHandler);
+            promoVideo.removeEventListener('error', _videoErrorHandler);
+            _videoEndedHandler = null;
+            _videoErrorHandler = null;
+            showNext();
+        };
+
+        _videoErrorHandler = () => {
+            clearPromoTimer();
+            promoVideo.removeEventListener('ended', _videoEndedHandler);
+            promoVideo.removeEventListener('error', _videoErrorHandler);
+            _videoEndedHandler = null;
+            _videoErrorHandler = null;
+            showNext();
+        };
+
+        promoVideo.addEventListener('ended', _videoEndedHandler);
+        promoVideo.addEventListener('error', _videoErrorHandler);
+        promoVideo.src = src;
+        promoVideo.hidden = false;
+        promoVideo.load();
+        promoVideo.play().catch(() => {});
+        return;
+    }
+
+    if (isWebPage && promoIframe) {
+        const embed = toWebVideoEmbed(src);
+        promoIframe.src = embed.embedUrl;
+        promoIframe.hidden = false;
+        _iframeType = embed.type;
+        return;
+    }
+
+    scheduleNext(1000);
+}
 function normalizePayload(raw) { if (Array.isArray(raw)) return { settings: {}, items: raw }; if (raw && typeof raw === 'object') { const items = Array.isArray(raw.items) ? raw.items : []; const settings = raw.settings && typeof raw.settings === 'object' ? raw.settings : {}; return { settings, items }; } return { settings: {}, items: [] }; }
 function loadPromoItemsFromDb() { if (!dbPromise) { dbPromise = new Promise((resolve, reject) => { const request = indexedDB.open(DB_NAME, DB_VERSION); request.onupgradeneeded = () => { const db = request.result; if (!db.objectStoreNames.contains(DB_STORE)) db.createObjectStore(DB_STORE, { keyPath: 'id' }); }; request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); }); } return dbPromise.then((db) => new Promise((resolve, reject) => { const tx = db.transaction(DB_STORE, 'readonly'); const store = tx.objectStore(DB_STORE); const request = store.getAll(); request.onsuccess = () => resolve((request.result || []).filter((item) => item && typeof item === 'object')); request.onerror = () => reject(request.error); })); }
 function startPromoPlaylist(data) { const payload = normalizePayload(data); const currentItem = promoMediaList[promoIndex] || null; const currentKey = getItemKey(currentItem); promoConfig = payload; promoMediaList = payload.items.filter((item) => item && typeof item === 'object' && item.active !== false); _cacheBuster = Date.now(); if (!promoMediaList.length) { promoIndex = 0; hideAllMedia(); if (promoEmpty) { promoEmpty.hidden = false; promoEmpty.textContent = 'Geen zichtbare promotie-items. Zet een item op Toon op promotiepagina.'; } return; } const nextIndex = currentKey ? promoMediaList.findIndex((item) => getItemKey(item) === currentKey) : -1; const shouldKeepCurrentDisplay = currentKey && nextIndex >= 0; promoIndex = nextIndex >= 0 ? nextIndex : Math.min(promoIndex, promoMediaList.length - 1); if (shouldKeepCurrentDisplay) return; showCurrent(); }

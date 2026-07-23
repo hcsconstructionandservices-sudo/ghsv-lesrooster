@@ -4,5 +4,20 @@
     "webDurationMs": 22000,
     "videoFallbackDurationMs": 30000
   },
-  "items": []
+  "items": [
+    {
+      "type": "image",
+      "active": true,
+      "durationMs": 9000,
+      "file": "/img/1784820834180-0576438b1847-exanendag.png",
+      "name": "exanendag.png"
+    },
+    {
+      "type": "video",
+      "active": true,
+      "durationMs": 30000,
+      "src": "https://www.ghsv.nl/wp-content/uploads/2024/10/P1122257.mp4",
+      "name": "P1122257.mp4"
+    }
+  ]
 }
