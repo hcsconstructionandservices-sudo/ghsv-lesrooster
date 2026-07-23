@@ -11,13 +11,6 @@
       "durationMs": 30000,
       "src": "https://www.ghsv.nl/wp-content/uploads/2024/10/P1122257.mp4",
       "name": "P1122257.mp4"
-    },
-    {
-      "type": "image",
-      "active": true,
-      "durationMs": 9000,
-      "file": "/img/1784825379813-2ccbc48985e9f-vrijwilligersbar.png",
-      "name": "vrijwilligersbar.png"
     }
   ]
 }
