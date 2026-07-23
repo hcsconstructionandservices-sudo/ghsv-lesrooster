@@ -465,14 +465,16 @@ function renderItems() {
 }
 
 async function handleUploadedFiles(files) {
-    if (!files || !files.length) {
+    const selectedFiles = Array.isArray(files) ? files : Array.from(files || []);
+
+    if (!selectedFiles.length) {
         setStatus('Geen bestanden gekozen.');
         return;
     }
 
     try {
         const useServer = await isServerModeEnabled();
-        const pending = await Promise.all(Array.from(files).map(async (file) => {
+        const pending = await Promise.all(selectedFiles.map(async (file) => {
             const isVideo = file.type.startsWith('video/') || /\.(mp4|webm|ogg)$/i.test(file.name);
             const type = isVideo ? 'video' : 'image';
             let filePath = file.name;
@@ -612,8 +614,9 @@ function clearStoredItems() {
 
 if (uploadInput) {
     uploadInput.addEventListener('change', () => {
-        handleUploadedFiles(uploadInput.files);
+        const selectedFiles = Array.from(uploadInput.files || []);
         uploadInput.value = '';
+        handleUploadedFiles(selectedFiles);
     });
 }
 
