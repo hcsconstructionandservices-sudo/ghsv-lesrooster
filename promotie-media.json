@@ -1,16 +1,8 @@
 {
   "settings": {
-    "imageDurationMs": 10000,
+    "imageDurationMs": 9000,
     "webDurationMs": 22000,
     "videoFallbackDurationMs": 30000
   },
-  "items": [
-    {
-      "type": "video",
-      "active": true,
-      "durationMs": 30000,
-      "file": "/img/1784819974109-6d7f47f833056-P1122257-2-.mp4",
-      "name": "P1122257[2].mp4"
-    }
-  ]
+  "items": []
 }
