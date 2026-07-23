@@ -6,18 +6,11 @@
   },
   "items": [
     {
-      "type": "image",
-      "active": true,
-      "durationMs": 9000,
-      "file": "/img/1784812249393-9d2c06e1d850e-1784746892638-a6ad4dbaffd7b-Designer.jpeg",
-      "name": "1784746892638-a6ad4dbaffd7b-Designer.jpeg"
-    },
-    {
       "type": "video",
       "active": true,
       "durationMs": 30000,
-      "file": "/img/1784812258686-f585ccee7a3b1-P1122257-1-.mp4",
-      "name": "P1122257[1].mp4"
+      "file": "/img/1784819974109-6d7f47f833056-P1122257-2-.mp4",
+      "name": "P1122257[2].mp4"
     }
   ]
 }
