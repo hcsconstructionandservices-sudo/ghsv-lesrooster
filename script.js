@@ -114,6 +114,7 @@ const bannerMessages = [
     'Welkom bij de GHSV Harderwijk!',
     'Schrijf je in op onze website! Scan de QR-code of ga naar onze inschrijfpagina.',
     'Volg ons op Facebook en Instagram voor nieuws!',
+    'Schrijf je op tijd in voor de mondioring ivm een wachtlijst!',
     'Laat een riem op maat maken, vraag ernaar bij de instructeurs!',
     'Wij zoeken hulp, wordt vrijwilliger en help mee met activiteiten en evenementen!',
     'Uw reclame ook langs het veld? Neem contact op voor sponsormogelijkheden!'
