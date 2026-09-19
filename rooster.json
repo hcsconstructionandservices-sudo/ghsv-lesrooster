@@ -161,9 +161,7 @@
         "start": "09:00",
         "eind": "10:00",
         "instructeurs": [
-          { "naam": "Alwin Hazeleger", "foto": "alwin.jpg" },
-          { "naam": "Ellen v Reek", "foto": "ellen.jpg" },
-          { "naam": "Monica Ros", "foto": "monica.jpg" }   
+          { "naam": "Monica Ros", "foto": "monica.jpg" }  
         ]
       },
       {
@@ -179,9 +177,7 @@
         "start": "11:00",
         "eind": "12:00",
         "instructeurs": [
-          { "naam": "René ter Maat", "foto": "rene.jpg" },
             { "naam": "Monica Ros", "foto": "monica.jpg" }
-
         ]
       },
       {
