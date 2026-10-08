@@ -43,7 +43,7 @@
         "start": "20:00",
         "eind": "21:00",
         "instructeurs": [
-          { "naam": "David Havik", "foto": "david.jpg" }
+          { "naam": "Henk Dekker", "foto": "henk.jpg" }
         ]
       },
       { "titel": "Agility specials",
