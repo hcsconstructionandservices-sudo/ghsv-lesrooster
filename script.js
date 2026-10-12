@@ -112,6 +112,7 @@ if (qrCodeElem) {
 // Banner-meldingen rouleren, datum en tijd links
 const bannerMessages = [
     'Welkom bij de GHSV Harderwijk!',
+    'Mis onze bingo night vrijdag 30 oktober niet!',
     'Schrijf je in op onze website! Scan de QR-code of ga naar onze inschrijfpagina.',
     'Volg ons op Facebook en Instagram voor nieuws!',
     'Schrijf je op tijd in voor de mondioring ivm een wachtlijst!',
