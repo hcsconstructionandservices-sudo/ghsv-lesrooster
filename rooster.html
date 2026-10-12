@@ -6,10 +6,18 @@
     <title>Hondenschool Lesrooster</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="rooster-page">
     <div class="banner">
         <span id="banner-datetime" class="banner-datetime"></span>
         <span class="banner-logo"><img src="img/logo-ghsv.jpg" alt="GHSV Logo" /></span>
+        <div class="banner-weather" aria-live="polite" aria-label="Actueel weer in de omgeving van Hierden">
+            <img id="banner-weather-icon" alt="" hidden />
+            <div class="banner-weather-copy">
+                <span id="banner-weather-value">Weer ophalen...</span>
+                <small id="banner-weather-station"></small>
+            </div>
+            <a href="https://www.buienradar.nl" target="_blank" rel="noopener noreferrer">Buienradar</a>
+        </div>
         <span id="banner-message"></span>
     </div>
     <div class="menu-floating">

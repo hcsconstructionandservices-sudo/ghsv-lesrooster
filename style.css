@@ -622,6 +622,74 @@ body.material-modal-open {
     padding-left: 24px;
     font-size: clamp(1.2em, 3vw, 2.5em);
 }
+.banner-weather {
+    display: flex;
+    flex: 0 1 250px;
+    align-items: center;
+    gap: 8px;
+    min-width: 150px;
+    padding: 0 8px;
+    font-size: 0.82rem;
+}
+.banner-weather img {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+.banner-weather-copy {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    gap: 3px;
+}
+#banner-weather-value,
+#banner-weather-station {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#banner-weather-value {
+    font-weight: bold;
+}
+#banner-weather-station {
+    opacity: 0.82;
+}
+.banner-weather a {
+    color: #fff;
+    font-size: 0.72rem;
+    white-space: nowrap;
+}
+@media (max-width: 900px) {
+    body.rooster-page .banner {
+        flex-wrap: wrap;
+        max-height: none;
+        padding: 6px 10px;
+    }
+
+    body.rooster-page .banner-datetime {
+        flex: 1 1 40%;
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    body.rooster-page .banner-logo {
+        display: none;
+    }
+
+    body.rooster-page .banner-weather {
+        flex: 1 1 45%;
+        justify-content: flex-end;
+    }
+
+    body.rooster-page #banner-message {
+        flex: 1 0 100%;
+        padding: 4px 0 0;
+        font-size: 1rem;
+        text-align: center;
+    }
+}
 .qr-fixed {
     position: fixed;
     right: 24px;

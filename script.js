@@ -123,6 +123,61 @@ const bannerMessages = [
 let bannerIndex = 0;
 const bannerElem = document.getElementById('banner-message');
 const bannerDatetimeElem = document.getElementById('banner-datetime');
+const weatherValueElem = document.getElementById('banner-weather-value');
+const weatherStationElem = document.getElementById('banner-weather-station');
+const weatherIconElem = document.getElementById('banner-weather-icon');
+const buienradarFeedUrl = 'https://data.buienradar.nl/2.0/feed/json';
+const hierdenCoordinates = { latitude: 52.358, longitude: 5.666 };
+
+function distanceFromHierden(station) {
+    const toRadians = degrees => degrees * Math.PI / 180;
+    const latitudeDifference = toRadians(station.lat - hierdenCoordinates.latitude);
+    const longitudeDifference = toRadians(station.lon - hierdenCoordinates.longitude);
+    const distanceFactor = Math.sin(latitudeDifference / 2) ** 2
+        + Math.cos(toRadians(hierdenCoordinates.latitude))
+        * Math.cos(toRadians(station.lat))
+        * Math.sin(longitudeDifference / 2) ** 2;
+    return 6371 * 2 * Math.atan2(Math.sqrt(distanceFactor), Math.sqrt(1 - distanceFactor));
+}
+
+function fetchBuienradarWeather() {
+    fetch(buienradarFeedUrl, { cache: 'no-store' })
+        .then(response => {
+            if (!response.ok) throw new Error('Weerfeed niet beschikbaar');
+            return response.json();
+        })
+        .then(data => {
+            const measurements = data.actual && Array.isArray(data.actual.stationmeasurements)
+                ? data.actual.stationmeasurements
+                : [];
+            const nearbyStations = measurements.filter(station =>
+                Number.isFinite(Number(station.temperature))
+                && Number.isFinite(Number(station.lat))
+                && Number.isFinite(Number(station.lon))
+            );
+            nearbyStations.sort((first, second) => distanceFromHierden(first) - distanceFromHierden(second));
+
+            const station = nearbyStations[0];
+            if (!station) throw new Error('Geen weerstation gevonden');
+
+            const temperature = Number(station.temperature).toLocaleString('nl-NL', {
+                maximumFractionDigits: 1
+            });
+            const stationName = String(station.stationname || '').replace(/^Meetstation\s+/i, '') || 'dichtstbijzijnd';
+            weatherValueElem.textContent = `${temperature} °C · ${station.weatherdescription || 'Actuele waarneming'}`;
+            weatherStationElem.textContent = `Meetstation ${stationName}`;
+            weatherIconElem.hidden = !station.iconurl;
+            if (station.iconurl) weatherIconElem.src = station.iconurl;
+            weatherIconElem.alt = station.weatherdescription || 'Actueel weer';
+            weatherIconElem.title = station.weatherdescription || 'Actueel weer';
+        })
+        .catch(() => {
+            weatherValueElem.textContent = 'Weer tijdelijk niet beschikbaar';
+            weatherStationElem.textContent = '';
+            weatherIconElem.hidden = true;
+        });
+}
+
 function getBannerDateTime() {
     const now = new Date();
     const dateStr = now.toLocaleDateString('nl-NL', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' });
@@ -170,6 +225,7 @@ if (menuRefreshBtn) {
     menuRefreshBtn.addEventListener('click', () => {
         fetchRooster();
         fetchAdMedia();
+        fetchBuienradarWeather();
         closeQuickMenu();
     });
 }
@@ -265,3 +321,5 @@ function refreshData() {
     setTimeout(refreshData, refreshInterval);
 }
 refreshData();
+fetchBuienradarWeather();
+setInterval(fetchBuienradarWeather, 10 * 60 * 1000);
